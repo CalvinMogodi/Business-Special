@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item
+      android:id="@+id/menu_login"
+      android:showAsAction="ifRoom"
+      android:title="Log Out" />
+  <item
+      android:id="@+id/menu_register"
+      android:showAsAction="ifRoom"
+      android:title="Register" />  
+  <item
+      android:id="@+id/menu_contactUs"
+      android:showAsAction="ifRoom"
+      android:title="Contact Us" />
+  <item
+      android:id="@+id/menu_about"
+      android:showAsAction="ifRoom"
+      android:title="About Business Special" />
+  <item
+      android:id="@+id/menu_help"
+      android:showAsAction="ifRoom"
+      android:title="Help" />
+</menu>
