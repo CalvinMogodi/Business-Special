@@ -26,5 +26,13 @@ namespace BusinessSpecial.Models
         public List<Category> Categories { get; set;}
         [JsonProperty("userType")]
         public UserType UserType { get; set; }
+        [JsonProperty("logo")]
+        public string Logo { get; set; }
+        [JsonProperty("businessName")]
+        public string BusinessName { get; set; }
+        [JsonProperty("registrationNumber")]
+        public string RegistrationNumber { get; set; }
+        [JsonProperty("websiteLink")]
+        public string WebsiteLink { get; set; }
     }
 }

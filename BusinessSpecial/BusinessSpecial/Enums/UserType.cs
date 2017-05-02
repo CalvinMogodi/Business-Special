@@ -22,6 +22,6 @@ namespace BusinessSpecial.Enums
 
         // [Description("Courier")]
         [EnumMember]
-        Courier = 3,
+        Business = 3,
     }
 }

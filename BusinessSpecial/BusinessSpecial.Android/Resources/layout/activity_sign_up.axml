@@ -1,51 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
-    <LinearLayout
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/toolbar"
-        android:padding="12dp">      
-        <EditText
-            android:inputType="textPersonName"
+        android:layout_height="match_parent">
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Display Name"
-            android:id="@+id/signup_etdisplay_name" />
-        <EditText
-            android:inputType="textEmailAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/signup_etUsername"
-            android:hint="Username" />
-        <EditText
-            android:inputType="textPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/signup_password"
-            android:hint="Password" />
-        <EditText
-            android:inputType="textPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/signup_confirm_password"
-            android:hint="Confirm Password" />
-        <Button
-            android:text="@string/signup"
-            android:backgroundTint="@color/primary"
-            android:theme="@style/button_primary"
-            android:id="@+id/button_sign_up"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/signup_tvmessage" />
-    </LinearLayout>
-</RelativeLayout>
+            android:layout_height="match_parent"
+            android:layout_below="@id/toolbar"
+            android:padding="12dp">
+            <Switch
+                android:id="@+id/signup_usertype"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="20dp"
+                android:text="Register as a business" />
+            <LinearLayout 
+                android:visibility="gone"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="63.5dp"
+                android:padding="12dp"
+                 android:id="@+id/signup_uploadlogo">
+                <Button
+                    android:id="@+id/signup_uploadlogo_button"
+                    android:layout_width="172.0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Select Logo" />
+                <ImageView
+                    android:src="@android:drawable/ic_menu_gallery"
+                    android:layout_width="60.0dp"
+                    android:layout_height="45.0dp"
+                    android:adjustViewBounds="true"
+                    android:id="@+id/signup_uploadlogo_imageView"
+                    android:layout_marginBottom="0.0dp" />
+            </LinearLayout>
+            <EditText
+                android:inputType="textPersonName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Display Name"
+                android:id="@+id/signup_displayname" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Business Name"
+                android:id="@+id/signup_businessname"
+                android:visibility="gone"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Registration Number"
+                android:id="@+id/signup_registration_number" 
+                 android:visibility="gone"/>
+          <EditText
+                android:hint="Website Link"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/signup_website_link"
+                android:visibility="gone"/>
+            <EditText
+                android:inputType="textEmailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/signup_etUsername"
+                android:hint="Username" />
+            <EditText
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/signup_password"
+                android:hint="Password" />
+            <EditText
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/signup_confirm_password"
+                android:hint="Confirm Password" />
+            <Button
+                android:text="@string/signup"
+                android:backgroundTint="@color/primary"
+                android:theme="@style/button_primary"
+                android:id="@+id/button_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/signup_tvmessage" />
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>
