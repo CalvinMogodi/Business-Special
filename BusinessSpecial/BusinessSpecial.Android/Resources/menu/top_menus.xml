@@ -7,7 +7,11 @@
   <item
       android:id="@+id/menu_register"
       android:showAsAction="ifRoom"
-      android:title="Register" />  
+      android:title="Register" />
+  <item
+      android:id="@+id/menu_postAnAD"
+      android:showAsAction="ifRoom"
+      android:title="Post An AD" />
   <item
       android:id="@+id/menu_contactUs"
       android:showAsAction="ifRoom"

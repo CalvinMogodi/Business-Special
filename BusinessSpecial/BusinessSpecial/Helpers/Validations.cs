@@ -44,5 +44,18 @@ namespace BusinessSpecial.Helpers
                 return true;
             return false;
         }
+
+        public bool IsValidDatetime(string date)
+        {
+            try
+            {
+                Convert.ToDateTime(date);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            } 
+        }
     }
 }

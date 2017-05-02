@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-  <include
-      android:id="@+id/toolbar"
-      layout="@layout/toolbar" />
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
+  android:layout_height="match_parent" >
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <!--<LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:paddingBottom="66dp">-->
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:padding="12dp">
             <TextView
                 android:id="@+id/textView1"
-                android:text="About Business Special"
+                android:text="About Vert"
                 android:paddingTop="@dimen/small_margin"
                 android:paddingLeft="@dimen/small_margin"
                 android:paddingRight="@dimen/small_margin"
@@ -34,17 +33,16 @@
                 android:maxLines="4"
                 style="?android:textAppearanceSmall" />
             <TextView
-                android:text="@string/app_description"
+                android:text="@string/about_vert"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/small_margin"
                 android:ellipsize="end"
-                android:maxLines="4"
                 style="?android:textAppearanceMedium" />
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1" />           
         </LinearLayout>
-    <!--</LinearLayout>-->
 </RelativeLayout>
+</ScrollView>

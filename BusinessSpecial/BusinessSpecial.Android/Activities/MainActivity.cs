@@ -54,6 +54,9 @@ namespace BusinessSpecial.Droid
                     case "Register":
                         intent = new Intent(this, typeof(SignUpActivity));
                         break;
+                    case "Post An AD":
+                        intent = new Intent(this, typeof(PostAnADActivity));
+                        break;
                     case "Contact Us":
                         intent = new Intent(this, typeof(ContactActivity));
                         break;

@@ -4,4 +4,26 @@
     <item>@string/tab1</item>
     <item>@string/tab2</item>
   </string-array>
+  <string-array name="categories">
+    <item>Select Category</item>
+    <item>Adventure Or Theme Park</item>
+    <item>Art</item>
+    <item>Bar, Club Or Pub</item>
+    <item>Beauty And Spa</item>    
+    <item>Cars</item>
+    <item>Fashion</item>
+    <item>Games</item>
+    <item>Health</item>
+    <item>Hotal Or Casino</item>
+    <item>Investor Or Bank</item>
+    <item>Mall Or Shopping Center</item>
+    <item>Music And Radio</item>
+    <item>Restaurant Or Gas Station</item>
+    <item>Software And Technology</item>
+    <item>Sport</item>    
+    <item>Supermarket</item>
+    <item>Travel</item>
+    <item>Theater</item>
+    <item>Wholesale And Hardware</item>
+  </string-array>
 </resources>

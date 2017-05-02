@@ -13,7 +13,7 @@ namespace BusinessSpecial.Models
         [JsonProperty("displayName")]
         public string DisplayName { get; set; }
         [JsonProperty("Id")]
-        public string id { get; set; }
+        public string Id { get; set; }
         [JsonProperty("password")]
         public string Password { get; set; }
         [JsonProperty("username")]

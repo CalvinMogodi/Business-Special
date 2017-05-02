@@ -45,6 +45,7 @@
     <Compile Include="Helpers\Validations.cs" />
     <Compile Include="Interfaces\IBaseDataObject.cs" />
     <Compile Include="Interfaces\IMessageDialog.cs" />
+    <Compile Include="Models\Advert.cs" />
     <Compile Include="Models\BaseDataObject.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Item.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="ViewModels\ItemDetailViewModel.cs" />
     <Compile Include="ViewModels\ItemsViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\PostAdvertViewModel.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

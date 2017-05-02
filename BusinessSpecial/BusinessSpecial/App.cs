@@ -14,7 +14,7 @@ namespace BusinessSpecial
 
         public static void Initialize()
         {
-            ServiceLocator.Instance.Register<IDataStore<Item, User>, MockDataStore>();
+            ServiceLocator.Instance.Register<IDataStore<Item, User, Advert>, MockDataStore>();
         }
     }
 }

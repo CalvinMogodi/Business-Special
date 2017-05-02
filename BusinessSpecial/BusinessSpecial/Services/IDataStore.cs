@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace BusinessSpecial.Services
 {
-    public interface IDataStore<T, U>
+    public interface IDataStore<T, U, A>
     {
         Task<bool> AddItemAsync(T item);
         Task<bool> SignUpUserAsync(U user);
@@ -16,5 +16,7 @@ namespace BusinessSpecial.Services
         Task InitializeAsync();
         Task<bool> PullLatestAsync();
         Task<bool> SyncAsync();
+
+        Task<bool> AddAdvertAsync(A advert);
     }
 }

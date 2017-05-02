@@ -23,10 +23,10 @@ namespace BusinessSpecial.Droid.Activities
         Button signUpButton;
         EditText username, password, displayName, confirmPassword;
         TextView message;
-        public bool formIsValid { get; set; }
-        public User user { get; set; }
-        public SignUpViewModel viewModel { get; set; }
-        public BaseViewModel baseModel { get; set; }
+        public bool FormIsValid { get; set; }
+        public User User { get; set; }
+        public SignUpViewModel ViewModel { get; set; }
+        public BaseViewModel BaseModel { get; set; }
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -48,8 +48,8 @@ namespace BusinessSpecial.Droid.Activities
             };
            
 
-            viewModel.SignUpUser(_user);
-            if (viewModel.IsSignUp)
+            ViewModel.SignUpUser(_user);
+            if (ViewModel.IsSignUp)
                 StartActivity(new Intent(this, typeof(LoginActivity)));
             else
                 message.Text = "Unable to sign you up, please try again";
@@ -62,41 +62,41 @@ namespace BusinessSpecial.Droid.Activities
             Android.Graphics.Drawables.Drawable icon = Resources.GetDrawable(Resource.Drawable.error);
             icon.SetBounds(0, 0, 0, 0);
 
-            formIsValid = true;
+            FormIsValid = true;
 
             if (!validation.IsRequired(displayName.Text))
             {
                 username.SetError("This field is required", icon);
-                formIsValid = false;
+                FormIsValid = false;
             }
 
             if (!validation.IsValidEmail(username.Text))
             {
                 username.SetError("Invalid email address", icon);
-                formIsValid = false;
+                FormIsValid = false;
             }
 
             if (!validation.IsValidPassword(password.Text))
             {
                 password.SetError("Password cannot be empty and length must be greater than 6 characters", icon);
-                formIsValid = false;
+                FormIsValid = false;
             }
 
             if (!validation.IsValidPassword(confirmPassword.Text))
             {
                 confirmPassword.SetError("Password cannot be empty and length must be greater than 6 characters", icon);
-                formIsValid = false;
+                FormIsValid = false;
             }
 
             if (confirmPassword.Text != password.Text)
             {
                 confirmPassword.SetError("Password and confirm password don't match", icon);
-                formIsValid = false;
+                FormIsValid = false;
             }
 
            
 
-            return formIsValid;
+            return FormIsValid;
         }
 
         private void Initialize()
@@ -109,7 +109,7 @@ namespace BusinessSpecial.Droid.Activities
             confirmPassword = FindViewById<EditText>(Resource.Id.signup_confirm_password);
             password = FindViewById<EditText>(Resource.Id.signup_password);            
             message = FindViewById<TextView>(Resource.Id.signup_tvmessage);
-            viewModel = new SignUpViewModel();
+            ViewModel = new SignUpViewModel();
             
             signUpButton.Click += SignUpButton_Click;
         }

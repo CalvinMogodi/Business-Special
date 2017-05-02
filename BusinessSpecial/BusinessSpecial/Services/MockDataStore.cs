@@ -9,7 +9,7 @@ using Firebase.Xamarin.Database;
 
 namespace BusinessSpecial.Services
 {
-    public class MockDataStore : IDataStore<Item, User>
+    public class MockDataStore : IDataStore<Item, User, Advert>
     {
         bool isInitialized;
         List<Item> items;
@@ -55,6 +55,16 @@ namespace BusinessSpecial.Services
             var firebase = new FirebaseClient("https://courierrequest-6a586.firebaseio.com/");
 
             await firebase.Child("User").PostAsync(user);
+
+            return await Task.FromResult(true);
+        }
+
+
+        public async Task<bool> AddAdvertAsync(Advert advert)
+        {
+            var firebase = new FirebaseClient("https://courierrequest-6a586.firebaseio.com/");
+
+            await firebase.Child("Advert").PostAsync(advert);
 
             return await Task.FromResult(true);
         }

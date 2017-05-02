@@ -90,9 +90,11 @@
     <Compile Include="Activities\BrowseItemDetailActivity.cs" />
     <Compile Include="Activities\ContactActivity.cs" />
     <Compile Include="Activities\LoginActivity.cs" />
+    <Compile Include="Activities\PostAnADActivity.cs" />
     <Compile Include="Activities\SignUpActivity.cs" />
     <Compile Include="Activities\HelpActivity.cs" />
     <Compile Include="Fragments\AboutFragment.cs" />
+    <Compile Include="Fragments\DatePickerFragment.cs" />
     <Compile Include="Fragments\IFragmentVisible.cs" />
     <Compile Include="Helpers\MessageDialog.cs" />
     <Compile Include="Activities\MainActivity.cs" />
@@ -110,6 +112,9 @@
     <None Include="packages.config" />
     <AndroidResource Include="Resources\layout\fragment_about.axml" />
     <AndroidResource Include="Resources\layout\fragment_browse.axml" />
+    <AndroidResource Include="Resources\layout\activity_post_an_ad.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <None Include="Resources\values-v19\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
