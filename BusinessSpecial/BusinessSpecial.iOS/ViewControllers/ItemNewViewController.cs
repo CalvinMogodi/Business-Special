@@ -3,6 +3,7 @@ using BusinessSpecial.Helpers;
 using BusinessSpecial.Model;
 using BusinessSpecial.ViewModel;
 using UIKit;
+using BusinessSpecial.Models;
 
 namespace BusinessSpecial.iOS
 {
@@ -24,11 +25,11 @@ namespace BusinessSpecial.iOS
 
             btnSaveItem.TouchUpInside += async (sender, e) =>
 			{
-				var _item = new Item();
-				_item.Text = txtTitle.Text;
-				_item.Description = txtDesc.Text;
+				var _advert = new Advert();
+                _advert.SpecialName = txtTitle.Text;
+                _advert.User.BusinessName = txtDesc.Text;
 
-                await ViewModel.AddItem(_item);
+                await ViewModel.AddItem(_advert);
                 NavigationController.PopViewController(true);
 			};
 		}

@@ -18,5 +18,6 @@ namespace BusinessSpecial.Services
         Task<bool> SyncAsync();
 
         Task<bool> AddAdvertAsync(A advert);
+        Task<IEnumerable<A>> GetAdvertsAsync(bool forceRefresh = false);
     }
 }

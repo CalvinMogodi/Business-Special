@@ -1,17 +1,17 @@
 ﻿using BusinessSpecial.Model;
-
+using BusinessSpecial.Models;
 
 namespace BusinessSpecial.ViewModel
 {
     public class ItemDetailViewModel : BaseViewModel
     {
-        public Item Item { get; set; }
-        public ItemDetailViewModel(Item item = null)
+        public Advert Advert { get; set; }
+        public ItemDetailViewModel(Advert advert = null)
         {
-            if (item != null)
+            if (advert != null)
             {
-                Title = item.Text;
-                Item = item;
+                Title = advert.SpecialName;
+                Advert = advert;
             }
         }
 

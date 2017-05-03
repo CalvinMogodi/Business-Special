@@ -3,26 +3,27 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using BusinessSpecial.Helpers;
 using BusinessSpecial.Model;
+using BusinessSpecial.Models;
 
 namespace BusinessSpecial.ViewModel
 {
     public class ItemsViewModel : BaseViewModel
     {
-        public ObservableRangeCollection<Item> Items { get; set; }
+        public ObservableRangeCollection<Advert> Adverts { get; set; }
 
         public ItemsViewModel()
         {
             Title = "Browse";
-            Items = new ObservableRangeCollection<Item>();
+            Adverts = new ObservableRangeCollection<Advert>();
             var task = ExecuteLoadItemsCommand();
             task.Wait();
         }
 
-        public async Task AddItem(Item item)
+        public async Task AddItem(Advert advert)
         {
-            var _item = item as Item;
-            Items.Add(_item);
-            await DataStore.AddItemAsync(_item);
+            var _advert = advert as Advert;
+            Adverts.Add(_advert);
+            await DataStore.AddAdvertAsync(_advert);
         }
 
         public async Task ExecuteLoadItemsCommand()
@@ -34,9 +35,9 @@ namespace BusinessSpecial.ViewModel
 
             try
             {
-                Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
-                Items.ReplaceRange(items);
+                Adverts.Clear();
+                var adverts = await DataStore.GetAdvertsAsync(true);
+                Adverts.ReplaceRange(adverts);
             }
             catch (Exception ex)
             {

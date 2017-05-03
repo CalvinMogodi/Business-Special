@@ -13,6 +13,7 @@ namespace BusinessSpecial.Services
     {
         bool isInitialized;
         List<Item> items;
+        List<Advert> adverts;
 
 
         public async Task<bool> AddItemAsync(Item item)
@@ -102,6 +103,35 @@ namespace BusinessSpecial.Services
             await InitializeAsync();
 
             return await Task.FromResult(items);
+        }
+
+        public async Task<IEnumerable<Advert>> GetAdvertsAsync(bool forceRefresh = false)
+        {
+            var firebase = new FirebaseClient("https://courierrequest-6a586.firebaseio.com/");
+            try
+            {
+                adverts = new List<Advert>();
+                DateTime today = DateTime.Now;
+
+                var users = await firebase.Child("User").OnceAsync<User>();
+
+                var advertsList = await firebase.Child("Advert").OnceAsync<Advert>();
+                foreach (var item in advertsList)
+                {
+                    DateTime advertDate = Convert.ToDateTime(item.Object.StartDate);
+                    if (advertDate >= today)
+                    {
+                        adverts.Add(item.Object);
+                    }
+                }
+                return await Task.FromResult(adverts);
+            }
+            catch (Exception ex)
+            {
+                return adverts;
+            }
+
+           
         }
 
         public Task<bool> PullLatestAsync()

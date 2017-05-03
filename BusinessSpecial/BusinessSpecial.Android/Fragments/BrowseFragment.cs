@@ -12,6 +12,7 @@ using BusinessSpecial.Helpers;
 using BusinessSpecial.Services;
 using System.Threading.Tasks;
 using BusinessSpecial.Model;
+using BusinessSpecial.Models;
 
 namespace BusinessSpecial.Droid
 {
@@ -42,10 +43,10 @@ namespace BusinessSpecial.Droid
             loadItems = ViewModel.ExecuteLoadItemsCommand();
 
 
-            MessagingCenter.Subscribe<AddItemActivity, Item>(this, "AddItem", async (obj, item) =>
+            MessagingCenter.Subscribe<AddItemActivity, Advert>(this, "AddItem", async (obj, advert) =>
             {
-                var _item = item as Item;
-                await ViewModel.AddItem(_item);
+                var _advert = advert as Advert;
+                await ViewModel.AddItem(_advert);
             });
         }
 
@@ -76,7 +77,7 @@ namespace BusinessSpecial.Droid
             refresher.Refresh += Refresher_Refresh;
             adapter.ItemClick += Adapter_ItemClick;
 
-            if (ViewModel.Items.Count == 0)
+            if (ViewModel.Adverts.Count == 0)
                 loadItems.Wait();
         }
 
@@ -96,7 +97,7 @@ namespace BusinessSpecial.Droid
 
         private void Adapter_ItemClick(object sender, RecyclerClickEventArgs e)
         {
-            var item = ViewModel.Items[e.Position];
+            var item = ViewModel.Adverts[e.Position];
             var intent = new Intent(Activity, typeof(BrowseItemDetailActivity));
 
             intent.PutExtra("data", Newtonsoft.Json.JsonConvert.SerializeObject(item));
@@ -125,7 +126,7 @@ namespace BusinessSpecial.Droid
             this.viewModel = viewModel;
             this.activity = activity;
 
-            this.viewModel.Items.CollectionChanged += (sender, args) =>
+            this.viewModel.Adverts.CollectionChanged += (sender, args) =>
             {
                 this.activity.RunOnUiThread(NotifyDataSetChanged);
             };
@@ -146,15 +147,15 @@ namespace BusinessSpecial.Droid
         // Replace the contents of a view (invoked by the layout manager)
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
-            var item = viewModel.Items[position];
+            var advert = viewModel.Adverts[position];
 
             // Replace the contents of the view with that element
             var myHolder = holder as MyViewHolder;
-            myHolder.TextView.Text = item.Text;
-            myHolder.DetailTextView.Text = item.Description;
+            myHolder.TextView.Text = advert.SpecialName;
+            myHolder.DetailTextView.Text = advert.User.BusinessName;
         }
 
-        public override int ItemCount => viewModel.Items.Count;
+        public override int ItemCount => viewModel.Adverts.Count;
 
 
     }

@@ -4,6 +4,7 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 using BusinessSpecial.Model;
+using BusinessSpecial.Models;
 using BusinessSpecial.ViewModel;
 
 namespace BusinessSpecial.Droid
@@ -26,13 +27,13 @@ namespace BusinessSpecial.Droid
 
             var data = Intent.GetStringExtra("data");
 
-            var item = Newtonsoft.Json.JsonConvert.DeserializeObject<Item>(data);
-            viewModel = new ItemDetailViewModel(item);
+            var advert = Newtonsoft.Json.JsonConvert.DeserializeObject<Advert>(data);
+            viewModel = new ItemDetailViewModel(advert);
 
-            FindViewById<TextView>(Resource.Id.description).Text = item.Description;
+            FindViewById<TextView>(Resource.Id.description).Text = advert.User.BusinessName;
 
 
-            SupportActionBar.Title = item.Text;
+            SupportActionBar.Title = advert.SpecialName;
         }
 
 

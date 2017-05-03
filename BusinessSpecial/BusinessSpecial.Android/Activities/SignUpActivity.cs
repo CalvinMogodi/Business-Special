@@ -25,7 +25,7 @@ namespace BusinessSpecial.Droid.Activities
         Button signUpButton, uploadlogobutton ; Switch userType; LinearLayout uploadlogo;
         EditText username, password, displayName, confirmPassword, businessName, registrationNumber, websiteLink;
         TextView message;
-        public string logo { get; set; }
+        public string Logo { get; set; }
         public static readonly int PickImageId = 1000;
         ImageView uploadlogoimageView;
         public bool FormIsValid { get; set; }
@@ -85,7 +85,7 @@ namespace BusinessSpecial.Droid.Activities
             
             if (userType.Checked)
             {
-                if (string.IsNullOrEmpty(logo))
+                if (string.IsNullOrEmpty(Logo))
                 {
                     MessageDialog messageDialog = new MessageDialog();
                     messageDialog.SendToast("Select loge");
@@ -184,7 +184,7 @@ namespace BusinessSpecial.Droid.Activities
             {
                 Android.Net.Uri uri = data.Data;
                 uploadlogoimageView.SetImageURI(uri);
-                logo = uri.ToString();
+                Logo = uri.ToString();
             }
         }
 

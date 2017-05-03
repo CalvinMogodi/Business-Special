@@ -15,8 +15,8 @@ namespace BusinessSpecial.iOS
 			base.ViewDidLoad();
 
 			Title = ViewModel.Title;
-			ItemNameLabel.Text = ViewModel.Item.Text;
-			ItemDescriptionLabel.Text = ViewModel.Item.Description;
+			ItemNameLabel.Text = ViewModel.Advert.SpecialName;
+			ItemDescriptionLabel.Text = ViewModel.Advert.User.BusinessName;
 
 		}
 
