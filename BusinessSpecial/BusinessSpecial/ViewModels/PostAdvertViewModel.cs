@@ -16,7 +16,7 @@ namespace BusinessSpecial.ViewModels
             Title = "Login";
         }
 
-        public async Task LoginUserAsync(Advert advert)
+        public async Task AddAdvertAsync(Advert advert)
         {
             IsComplete = false;
             var _advert = advert as Advert;

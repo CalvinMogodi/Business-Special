@@ -7,7 +7,7 @@
   <item
       android:id="@+id/menu_register"
       android:showAsAction="ifRoom"
-      android:title="Register" />
+      android:title="Register A Friend" />
   <item
       android:id="@+id/menu_postAnAD"
       android:showAsAction="ifRoom"

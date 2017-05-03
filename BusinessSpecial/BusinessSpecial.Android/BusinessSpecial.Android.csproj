@@ -98,6 +98,7 @@
     <Compile Include="Fragments\IFragmentVisible.cs" />
     <Compile Include="Helpers\MessageDialog.cs" />
     <Compile Include="Activities\MainActivity.cs" />
+    <Compile Include="Helpers\AppPreferences.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Fragments\BrowseFragment.cs" />

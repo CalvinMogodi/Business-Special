@@ -17,6 +17,7 @@ using BusinessSpecial.Helpers;
 using Android.Locations;
 using Android;
 using Android.Content.PM;
+using BusinessSpecial.Droid.Helpers;
 
 namespace BusinessSpecial.Droid
 {
@@ -57,7 +58,11 @@ namespace BusinessSpecial.Droid
                 Intent mainIntent = new Intent(this, typeof(MainActivity));
                 mainIntent.AddFlags(ActivityFlags.ClearTop);
                 mainIntent.AddFlags(ActivityFlags.SingleTop);
-                //mainIntent.PutExtra("IsAuthenticated", ViewModel.IsAuthenticated);
+
+                Context mContext = Android.App.Application.Context;
+                AppPreferences ap = new AppPreferences(mContext);
+                ap.saveAccessKey(ViewModel.User.Id);
+
                 StartActivity(mainIntent);
             }
                 

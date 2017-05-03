@@ -40,14 +40,14 @@ namespace BusinessSpecial.Droid
             ServiceLocator.Instance.Register<MockDataStore, MockDataStore>();
 
             ViewModel = new ItemsViewModel();
-            loadItems = ViewModel.ExecuteLoadItemsCommand();
+             loadItems = ViewModel.GetAdvertsAsync();
 
 
-            MessagingCenter.Subscribe<AddItemActivity, Advert>(this, "AddItem", async (obj, advert) =>
-            {
-                var _advert = advert as Advert;
-                await ViewModel.AddItem(_advert);
-            });
+            //MessagingCenter.Subscribe<AddItemActivity, Advert>(this, "AddItem", async (obj, advert) =>
+            //{
+            //    var _advert = advert as Advert;
+            //    await ViewModel.AddItem(_advert);
+            //});
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -106,7 +106,7 @@ namespace BusinessSpecial.Droid
 
         private async void Refresher_Refresh(object sender, EventArgs e)
         {
-            await ViewModel.ExecuteLoadItemsCommand();
+            await ViewModel.GetAdvertsAsync();
             refresher.Refreshing = false;
         }
 
@@ -152,7 +152,7 @@ namespace BusinessSpecial.Droid
             // Replace the contents of the view with that element
             var myHolder = holder as MyViewHolder;
             myHolder.TextView.Text = advert.SpecialName;
-            myHolder.DetailTextView.Text = advert.User.BusinessName;
+            myHolder.DetailTextView.Text = advert.Category;
         }
 
         public override int ItemCount => viewModel.Adverts.Count;

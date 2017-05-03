@@ -14,6 +14,7 @@ using BusinessSpecial.Droid.Fragments;
 using BusinessSpecial.Helpers;
 using BusinessSpecial.Models;
 using BusinessSpecial.ViewModels;
+using BusinessSpecial.Droid.Helpers;
 
 namespace BusinessSpecial.Droid.Activities
 {
@@ -60,29 +61,14 @@ namespace BusinessSpecial.Droid.Activities
             categories.Adapter = adapter;
             ViewModel = new PostAdvertViewModel();
 
-            postButton.Click += PostButton_Click;
+            postButton.Click += PostButton_ClickAsync;
             startDate.Touch += StartDateSelect_OnClick;
             endDate.Touch += EndDateSelect_OnClick;
             startTime.Touch += (o, e) => ShowDialog(startTimeDialog);
             endTime.Touch += (o, e) => ShowDialog(endTimeDialog);
 
         }
-
-        public void VehiclebodytypeItemSelected(object sender, EventArgs e)
-        {
-            var selctedItem = categories.SelectedItem;
-
-            if (selctedItem.Equals("Motorcycle") || selctedItem.Equals("Passenger") || selctedItem.Equals("Select Vehicle Body Type"))
-            {
-                
-            }
-            else
-            {
-               
-            }
-        }
-
-       
+              
 
         private void StartTimePickerCallback(object sender, TimePickerDialog.TimeSetEventArgs e)
         {
@@ -104,22 +90,29 @@ namespace BusinessSpecial.Droid.Activities
             frag.Show(FragmentManager, DatePickerFragment.TAG);
         }
 
-        private void PostButton_Click(object sender, EventArgs eventArgs) {
+        private async void PostButton_ClickAsync(object sender, EventArgs eventArgs)
+        {
             message.Text = "";
             if (!ValidateForm())
                 return;
+            Context mContext = Android.App.Application.Context;
+            AppPreferences ap = new AppPreferences(mContext);
+            string userId = ap.getAccessKey();
 
-            Advert ad = new Advert() {
-               Category = categories.SelectedItem.ToString(),
+            Advert ad = new Advert()
+            {
+                Category = categories.SelectedItem.ToString(),
                 SpecialName = specialName.Text,
-                StartTime = startTime.Text ,
+                StartTime = startTime.Text,
                 EndTime = endTime.Text,
                 StartDate = startDate.Text,
                 EndDate = endDate.Text,
                 Email = email.Text,
                 Phone = phone.Text,
                 Location = location.Text,
-        };
+                UserId = userId,
+            };
+            await ViewModel.AddAdvertAsync(ad);
             if (ViewModel.IsComplete)
             {
                 Intent mainIntent = new Intent(this, typeof(MainActivity));

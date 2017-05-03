@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using BusinessSpecial.Helpers;
 using BusinessSpecial.Model;
 using BusinessSpecial.Models;
+using System.Collections.Generic;
 
 namespace BusinessSpecial.ViewModel
 {
@@ -15,8 +16,8 @@ namespace BusinessSpecial.ViewModel
         {
             Title = "Browse";
             Adverts = new ObservableRangeCollection<Advert>();
-            var task = ExecuteLoadItemsCommand();
-            task.Wait();
+            var task =  GetAdvertsAsync();
+            //task.Wait();
         }
 
         public async Task AddItem(Advert advert)
@@ -26,27 +27,27 @@ namespace BusinessSpecial.ViewModel
             await DataStore.AddAdvertAsync(_advert);
         }
 
-        public async Task ExecuteLoadItemsCommand()
+        public async Task GetAdvertsAsync()
         {
-            if (IsBusy)
-                return;
+            //if (IsBusy)
+            //    return;
 
-            IsBusy = true;
+            //IsBusy = true;
 
-            try
-            {
-                Adverts.Clear();
-                var adverts = await DataStore.GetAdvertsAsync(true);
-                Adverts.ReplaceRange(adverts);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
+            //try
+            //{
+            // Adverts.Clear();
+            Adverts = await DataStore.GetAdvertsAsync();
+                //Adverts.ReplaceRange(adverts);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Debug.WriteLine(ex);
+            //}
+            //finally
+            //{
+            //    IsBusy = false;
+            //}
         }
 
         ItemDetailViewModel detailsViewModel;

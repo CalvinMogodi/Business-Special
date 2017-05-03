@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using BusinessSpecial.Helpers;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BusinessSpecial.Services
@@ -18,6 +19,6 @@ namespace BusinessSpecial.Services
         Task<bool> SyncAsync();
 
         Task<bool> AddAdvertAsync(A advert);
-        Task<IEnumerable<A>> GetAdvertsAsync(bool forceRefresh = false);
+        Task<ObservableRangeCollection<A>> GetAdvertsAsync();
     }
 }

@@ -30,7 +30,7 @@ namespace BusinessSpecial.iOS
 			Title = ViewModel.Title;
 
 			ViewModel.PropertyChanged += IsBusy_PropertyChanged;
-			ViewModel.Adverts.CollectionChanged += Items_CollectionChanged;
+			//ViewModel.Adverts.CollectionChanged += Items_CollectionChanged;
 
 		}
 		public override async void ViewDidAppear(bool animated)
@@ -38,7 +38,7 @@ namespace BusinessSpecial.iOS
 			base.ViewDidAppear(animated);
 
 			if (ViewModel.Adverts.Count == 0)
-				await ViewModel.ExecuteLoadItemsCommand();
+				await ViewModel.GetAdvertsAsync();
 		}
 
 		public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
@@ -61,7 +61,7 @@ namespace BusinessSpecial.iOS
 		async void RefreshControl_ValueChanged(object sender, EventArgs e)
 		{
 			if (!ViewModel.IsBusy && refreshControl.Refreshing)
-				await ViewModel.ExecuteLoadItemsCommand();
+				await ViewModel.GetAdvertsAsync();
 
 		}
 

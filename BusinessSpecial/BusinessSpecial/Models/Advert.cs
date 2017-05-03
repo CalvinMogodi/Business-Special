@@ -39,6 +39,9 @@ namespace BusinessSpecial.Models
         [JsonProperty("location")]
         public string Location { get; set; }
 
+        [JsonProperty("userId")]
+        public string UserId { get; set; }
+
         [JsonProperty("user")]
         public User User { get; set; }
     }

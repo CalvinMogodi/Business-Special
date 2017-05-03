@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BusinessSpecial.Model;
 using BusinessSpecial.Models;
 using Firebase.Xamarin.Database;
+using BusinessSpecial.Helpers;
 
 namespace BusinessSpecial.Services
 {
@@ -13,7 +14,7 @@ namespace BusinessSpecial.Services
     {
         bool isInitialized;
         List<Item> items;
-        List<Advert> adverts;
+        ObservableRangeCollection<Advert> adverts;
 
 
         public async Task<bool> AddItemAsync(Item item)
@@ -28,15 +29,35 @@ namespace BusinessSpecial.Services
         public async Task<User> LoginUserAsync(User user)
         {
             User userDetails = null;
+            List<User> userList =new List<User>();
             var firebase = new FirebaseClient("https://courierrequest-6a586.firebaseio.com/");
             try
-            {
+            {               
+
                 var users = await firebase.Child("User").OnceAsync<User>();
                 foreach (var item in users)
                 {
+                    item.Object.Id = item.Key;
+                    userList.Add(item.Object);
                     if (item.Object.Password == user.Password && item.Object.Username == user.Username)
                     {
                         userDetails = item.Object;
+
+                        DateTime today = DateTime.Now;
+                        var advertsList = await firebase.Child("Advert").OnceAsync<Advert>();
+                        foreach (var advert in advertsList)
+                        {
+                            DateTime advertDate = Convert.ToDateTime(advert.Object.StartDate);
+                            if (advertDate >= today)
+                            {
+                                adverts.Add(advert.Object);
+
+                                foreach (var _advert in adverts)
+                                {
+                                    _advert.User = userList.FirstOrDefault(u => u.Id.Trim() == _advert.UserId.Trim());
+                                }
+                            }
+                        }
                     }
                 }
 
@@ -105,25 +126,23 @@ namespace BusinessSpecial.Services
             return await Task.FromResult(items);
         }
 
-        public async Task<IEnumerable<Advert>> GetAdvertsAsync(bool forceRefresh = false)
+        public async Task<ObservableRangeCollection<Advert>> GetAdvertsAsync()
         {
             var firebase = new FirebaseClient("https://courierrequest-6a586.firebaseio.com/");
             try
             {
-                adverts = new List<Advert>();
+                adverts = new ObservableRangeCollection<Advert>();
                 DateTime today = DateTime.Now;
 
-                var users = await firebase.Child("User").OnceAsync<User>();
-
-                var advertsList = await firebase.Child("Advert").OnceAsync<Advert>();
-                foreach (var item in advertsList)
-                {
-                    DateTime advertDate = Convert.ToDateTime(item.Object.StartDate);
-                    if (advertDate >= today)
-                    {
-                        adverts.Add(item.Object);
-                    }
-                }
+                //var advertsList = await firebase.Child("Advert").OnceAsync<Advert>();
+                //foreach (var item in advertsList)
+                //{
+                //    DateTime advertDate = Convert.ToDateTime(item.Object.StartDate);
+                //    if (advertDate >= today)
+                //    {
+                //        adverts.Add(item.Object);
+                //    }
+                //}
                 return await Task.FromResult(adverts);
             }
             catch (Exception ex)
