@@ -10,6 +10,9 @@ using BusinessSpecial.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using BusinessSpecial.Droid.Activities;
+using Android.Graphics;
+using Android.Util;
 
 namespace BusinessSpecial.Droid
 {
@@ -19,10 +22,14 @@ namespace BusinessSpecial.Droid
         public static AboutFragment NewInstance() =>
             new AboutFragment { Arguments = new Bundle() };
 
-        User User;
+        public User User { get; set; }
         AlertDialog CategoryDialog;
         List<string> mSelectedItems;
-       
+        TextView displaynameText, businessNameText, registrationnumberText, websitelinkText, wusernameText;
+        ImageView categoryImage, profilePicture;
+        LinearLayout categoryLinearLayout, accountLinearLayout;
+        LinearLayout displayName, registrationnumber, websitelink, businessName;
+
         string[] items = {  "Adventure Or Theme Park",    "Art",    "Bar, Club Or Pub",    "Beauty And Spa",    "Cars",    "Fashion",    "Games",    "Health",    "Hotal Or Casino",    "Investor Or Bank",    "Mall Or Shopping Center",    "Music And Radio",    "Restaurant Or Gas Station",    "Software And Technology",    "Sport",    "Supermarket",    "Travel","Theater","Wholesale And Hardware"};
         public ProfileViewModel ViewModel { get; set; }
 
@@ -37,24 +44,79 @@ namespace BusinessSpecial.Droid
 
         private async void GetUserProfileAsync()
         {
+            ViewModel = new ProfileViewModel();
+
             Context mContext = Android.App.Application.Context;
             AppPreferences ap = new AppPreferences(mContext);
             string userId = ap.getAccessKey();
             ViewModel = new ProfileViewModel();
 
-            await ViewModel.GetUserProfileAsync(userId);
-            User = ViewModel.User;
+           User _user = await ViewModel.GetUserProfileAsync(userId);
+            if (_user != null)
+            {
+                _user.Id = userId;
+                User = _user;
+
+                displaynameText.Text = _user.DisplayName;
+                businessNameText.Text = _user.BusinessName;
+                registrationnumberText.Text = _user.RegistrationNumber;
+                websitelinkText.Text = _user.WebsiteLink;
+                wusernameText.Text = _user.Username;
+
+                if (!string.IsNullOrEmpty(_user.Logo))
+                {
+                    Bitmap bitmap = StringToBitMap(_user.Logo);
+                    profilePicture.SetImageBitmap(bitmap);
+                }
+
+                if (_user.UserTypeId == 3)
+                {
+                    businessName.Visibility = ViewStates.Visible;
+                    registrationnumber.Visibility = ViewStates.Visible;
+                    websitelink.Visibility = ViewStates.Visible;
+                    displayName.Visibility = ViewStates.Gone;
+                }
+                else
+                {
+                    businessName.Visibility = ViewStates.Gone;
+                    registrationnumber.Visibility = ViewStates.Gone;
+                    websitelink.Visibility = ViewStates.Gone;
+                    displayName.Visibility = ViewStates.Visible;
+                }
+            }           
         }
 
-        Button learnMoreButton;
+        public Bitmap StringToBitMap(String encodedString)
+        {
+            try
+            {
+                byte[] encodeByte = Base64.Decode(encodedString, Base64.Default);
+                Bitmap bitmap = BitmapFactory.DecodeByteArray(encodeByte, 0, encodeByte.Length);
+                return bitmap;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view = inflater.Inflate(Resource.Layout.fragment_about, container, false);
-            ViewModel = new ProfileViewModel();
-            learnMoreButton = view.FindViewById<Button>(Resource.Id.button_learn_more);
+            var view = inflater.Inflate(Resource.Layout.fragment_about, container, false);           
+            categoryLinearLayout = view.FindViewById<LinearLayout>(Resource.Id.category_linear_layout);
 
-            
+            profilePicture = view.FindViewById<ImageView>(Resource.Id.viewaccount_profile_picture);
+            displayName = view.FindViewById<LinearLayout>(Resource.Id.displayname);
+            registrationnumber = view.FindViewById<LinearLayout>(Resource.Id.registrationnumber);
+            websitelink = view.FindViewById<LinearLayout>(Resource.Id.websitelink);
+            businessName = view.FindViewById<LinearLayout>(Resource.Id.businessName);
+
+            displaynameText = view.FindViewById<TextView>(Resource.Id.viewaccount_displayname);
+            businessNameText = view.FindViewById<TextView>(Resource.Id.viewaccount_businessname);
+            registrationnumberText = view.FindViewById<TextView>(Resource.Id.viewaccount_registrationnumber);
+            websitelinkText = view.FindViewById<TextView>(Resource.Id.viewaccount_websitelink);
+            wusernameText = view.FindViewById<TextView>(Resource.Id.viewaccount_username);
+
             return view;
         }
 
@@ -63,18 +125,25 @@ namespace BusinessSpecial.Droid
         public override void OnStart()
         {
             base.OnStart();
-            learnMoreButton.Click += LearnMoreButton_Click;
+            categoryLinearLayout.Click += Categories_Click;
         }
+        
 
-        private void LearnMoreButton_Click(object sender, System.EventArgs e)
+        private void Categories_Click(object sender, System.EventArgs e)
         {
-            bool[] checkedItems = new bool[18];
-             
-            foreach (var item in User.Categories)
+            bool[] checkedItems = new bool[19];
+            if (User != null)
             {
-                int position = Array.IndexOf(items, item);
-                checkedItems[position] = true;
+                if (User.Categories != null)
+                {
+                    foreach (var item in User.Categories)
+                    {
+                        int position = Array.IndexOf(items, item);
+                        checkedItems[position] = true;
+                    }
+                }                
             }
+            
            
             AlertDialog.Builder builder = new AlertDialog.Builder(Activity);
             builder.SetTitle("Choose Your Category");
@@ -83,6 +152,7 @@ namespace BusinessSpecial.Droid
 
 
             });
+            builder.SetNegativeButton("Cancel", delegate { CategoryDialog.Cancel(); });
             builder.SetPositiveButton("OK", delegate {
                 var sads = CategoryDialog.ListView.CheckedItemPositions;
                 List<string> selectedItems = new List<string>();
@@ -97,16 +167,22 @@ namespace BusinessSpecial.Droid
                 }
 
                 mSelectedItems = selectedItems;
+                User.Categories = mSelectedItems;
+                ViewModel.UpdateUserAsync(User);
                 CategoryDialog.Cancel();
             });
             CategoryDialog = builder.Create();
-            CategoryDialog.Show();
+            if (!CategoryDialog.IsShowing) {
+              
+                CategoryDialog.Show();
+            }
+            
         }
 
         public override void OnStop()
         {
             base.OnStop();
-            learnMoreButton.Click -= LearnMoreButton_Click;
+            categoryLinearLayout.Click += Categories_Click;
         }
 
         public void BecameVisible()

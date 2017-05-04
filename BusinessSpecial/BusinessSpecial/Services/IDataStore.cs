@@ -14,7 +14,7 @@ namespace BusinessSpecial.Services
         Task<bool> DeleteItemAsync(T item);
         Task<T> GetItemAsync(string id);
         Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false);
-
+        Task<bool> UpdateUserAsync(U user);
         Task InitializeAsync();
         Task<bool> PullLatestAsync();
         Task<bool> SyncAsync();

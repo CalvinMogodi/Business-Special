@@ -18,10 +18,11 @@ using Android.Locations;
 using Android;
 using Android.Content.PM;
 using BusinessSpecial.Droid.Helpers;
+using BusinessSpecial.Droid.Activities;
 
 namespace BusinessSpecial.Droid
 {
-    [Activity(Label = "LoginActivity",LaunchMode = LaunchMode.SingleInstance,
+    [Activity(Label = "LoginActivity", LaunchMode = LaunchMode.SingleInstance,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
         ScreenOrientation = ScreenOrientation.Portrait)]
     public class LoginActivity : Activity
@@ -45,16 +46,18 @@ namespace BusinessSpecial.Droid
         {
             if (!ValidateForm())
                 return;
-            FindViewById<ProgressBar>(Resource.Id.loadingPanel).Visibility = ViewStates.Visible; 
+            FindViewById<ProgressBar>(Resource.Id.loadingPanel).Visibility = ViewStates.Visible;
             message.Text = "";
-            var _user = new User() {
+            var _user = new User()
+            {
                 Username = username.Text,
                 Password = password.Text,
             };
-           
-           await ViewModel.LoginUserAsync(_user);
 
-            if (ViewModel.IsAuthenticated){
+            await ViewModel.LoginUserAsync(_user);
+
+            if (ViewModel.IsAuthenticated)
+            {
                 Intent mainIntent = new Intent(this, typeof(MainActivity));
                 mainIntent.AddFlags(ActivityFlags.ClearTop);
                 mainIntent.AddFlags(ActivityFlags.SingleTop);
@@ -65,15 +68,16 @@ namespace BusinessSpecial.Droid
 
                 StartActivity(mainIntent);
             }
-                
-            else 
+
+            else
                 message.Text = "Invaild username or password";
 
             FindViewById<ProgressBar>(Resource.Id.loadingPanel).Visibility = ViewStates.Gone;
 
         }
 
-        private bool ValidateForm() {
+        private bool ValidateForm()
+        {
             Validations validation = new Validations();
             Android.Graphics.Drawables.Drawable icon = Resources.GetDrawable(Resource.Drawable.error);
             icon.SetBounds(0, 0, 0, 0);
@@ -95,16 +99,35 @@ namespace BusinessSpecial.Droid
             return FormIsValid;
         }
 
-        private void Initialize() {
+        private void Initialize()
+        {
 
             // Create your application here
             SetContentView(Resource.Layout.activity_login);
-            loginButton = FindViewById<Button>(Resource.Id.button_login);           
+            loginButton = FindViewById<Button>(Resource.Id.button_login);
             username = FindViewById<EditText>(Resource.Id.login_txtUsername);
             password = FindViewById<EditText>(Resource.Id.login_txtPassword);
             message = FindViewById<TextView>(Resource.Id.login_tvmessage);
+            TextView forgotpassword = FindViewById<TextView>(Resource.Id.login_forgot_password);
+            TextView register = FindViewById<TextView>(Resource.Id.login_register);
             ViewModel = new LoginViewModel();
             loginButton.Click += LoginButton_Click;
+            forgotpassword.Click += ForgotPassword_Click;
+            register.Click += Register_Click;
+        }
+
+        public  void Register_Click(object sender, EventArgs e)
+        {
+            var intent = new Intent();
+            intent = new Intent(this, typeof(SignUpActivity));
+            StartActivity(intent);
+        }
+
+        public void ForgotPassword_Click(object sender, EventArgs e)
+        {
+            var intent = new Intent();
+            intent = new Intent(this, typeof(SignUpActivity));
+            StartActivity(intent);
         }
     }
 }

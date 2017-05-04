@@ -23,7 +23,7 @@ namespace BusinessSpecial.Models
         [JsonProperty("isActive")]
         public bool IsActive { get; set; }
         [JsonProperty("categories")]
-        public List<Category> Categories { get; set;}
+        public List<string> Categories { get; set;}
         [JsonProperty("userType")]
         public UserType UserType { get; set; }
         [JsonProperty("logo")]

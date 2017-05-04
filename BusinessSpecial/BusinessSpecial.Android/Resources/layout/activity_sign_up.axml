@@ -13,35 +13,45 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/toolbar"
-            android:padding="12dp">
-            <Switch
-                android:id="@+id/signup_usertype"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="20dp"
-                android:text="Register as a business" />
+            android:padding="12dp">           
             <LinearLayout 
-                android:visibility="gone"
                 android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="63.5dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:padding="12dp"
-                 android:id="@+id/signup_uploadlogo">
-                <Button
-                    android:id="@+id/signup_uploadlogo_button"
-                    android:layout_width="172.0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Select Logo" />
-                <ImageView
-                    android:src="@android:drawable/ic_menu_gallery"
-                    android:layout_width="60.0dp"
-                    android:layout_height="45.0dp"
-                    android:adjustViewBounds="true"
-                    android:id="@+id/signup_uploadlogo_imageView"
-                    android:layout_marginBottom="0.0dp" />
+                android:id="@+id/signup_uploadlogo">
+              <android.support.v7.widget.CardView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:elevation="12dp"
+                android:id="@+id/view2"
+                android:layout_centerHorizontal="true"
+                android:innerRadius="0dp"
+                android:shape="ring"
+                android:thicknessRatio="1.9">
+                            <ImageView
+                                android:layout_height="80dp"
+                                android:layout_width="match_parent"
+                                android:id="@+id/signup_profile_picture"
+                                android:src="@drawable/user"
+                                android:scaleType="centerCrop"
+                                android:adjustViewBounds="true">                              
+                </ImageView>           
+              </android.support.v7.widget.CardView>
             </LinearLayout>
+          <Switch
+             style="?android:textAppearanceMedium"
+             android:id="@+id/signup_usertype"
+             android:paddingBottom="15dp"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:text="Register as a business" />
+          <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:text=" "
+            android:background="#000000"
+            android:id="@+id/textView"/>
             <EditText
                 android:inputType="textPersonName"
                 android:layout_width="match_parent"
@@ -59,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Registration Number"
                 android:id="@+id/signup_registration_number" 
-                 android:visibility="gone"/>
+                android:visibility="gone"/>
           <EditText
                 android:hint="Website Link"
                 android:layout_width="match_parent"

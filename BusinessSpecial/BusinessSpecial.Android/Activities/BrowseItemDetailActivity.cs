@@ -30,7 +30,7 @@ namespace BusinessSpecial.Droid
             var advert = Newtonsoft.Json.JsonConvert.DeserializeObject<Advert>(data);
             viewModel = new ItemDetailViewModel(advert);
 
-            FindViewById<TextView>(Resource.Id.description).Text = advert.User.BusinessName;
+            FindViewById<TextView>(Resource.Id.description).Text = advert.User.DisplayName;
 
 
             SupportActionBar.Title = advert.SpecialName;

@@ -48,6 +48,7 @@ namespace BusinessSpecial.Services
             try
             {
                 user = await firebase.Child(userId).OnceSingleAsync<User>();
+                
                 return user;
             }
             catch (Exception ex)
@@ -56,7 +57,22 @@ namespace BusinessSpecial.Services
             }
         }
 
-        
+        public async Task<bool> UpdateUserAsync(User user)
+        {
+            var firebase = new FirebaseClient("https://courierrequest-6a586.firebaseio.com/User");
+            try
+            {
+                await firebase.Child(user.Id).PutAsync(user);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+
         public async Task<User> LoginUserAsync(User user)
         {
             User userDetails = null;

@@ -15,19 +15,20 @@ using BusinessSpecial.ViewModel;
 using BusinessSpecial.ViewModels;
 using BusinessSpecial.Helpers;
 using Java.IO;
-using static Android.Graphics.Bitmap;
+using Android.Util;
+using System.IO;
 
 namespace BusinessSpecial.Droid.Activities
 {
     [Activity(Label = "SignUpActivity")]
     public class SignUpActivity : Activity
     {
-        Button signUpButton, uploadlogobutton ; Switch userType; LinearLayout uploadlogo;
+        Button signUpButton; Switch userType; LinearLayout uploadlogo;
         EditText username, password, displayName, confirmPassword, businessName, registrationNumber, websiteLink;
         TextView message;
         public string Logo { get; set; }
         public static readonly int PickImageId = 1000;
-        ImageView uploadlogoimageView;
+        ImageView profilePicture;
         public bool FormIsValid { get; set; }
         public User User { get; set; }
         public SignUpViewModel ViewModel { get; set; }
@@ -50,12 +51,14 @@ namespace BusinessSpecial.Droid.Activities
             {
                 Username = username.Text.Trim(),
                 Password = password.Text.Trim(),
+                Logo = Logo,
                 UserTypeId = 2,
             };
 
             if (userType.Checked)
             {
                 _user.UserTypeId = 3;
+                _user.DisplayName = businessName.Text.Trim();
                 _user.BusinessName = businessName.Text.Trim();
                 _user.RegistrationNumber = registrationNumber.Text.Trim();
                 _user.WebsiteLink = websiteLink.Text.Trim();
@@ -160,11 +163,10 @@ namespace BusinessSpecial.Droid.Activities
             confirmPassword = FindViewById<EditText>(Resource.Id.signup_confirm_password);
             password = FindViewById<EditText>(Resource.Id.signup_password);            
             message = FindViewById<TextView>(Resource.Id.signup_tvmessage);
-            uploadlogoimageView = FindViewById<ImageView>(Resource.Id.signup_uploadlogo_imageView);
-            uploadlogobutton = FindViewById<Button>(Resource.Id.signup_uploadlogo_button);
+            profilePicture = FindViewById<ImageView>(Resource.Id.signup_profile_picture);
 
             userType.Click += OnCheckedChanged;
-            uploadlogobutton.Click += SelectLogoButton_Click;
+            profilePicture.Click += SelectLogoButton_Click;
             ViewModel = new SignUpViewModel();
             
             signUpButton.Click += SignUpButton_ClickAsync;
@@ -183,24 +185,28 @@ namespace BusinessSpecial.Droid.Activities
             if ((requestCode == PickImageId) && (resultCode == Result.Ok) && (data != null))
             {
                 Android.Net.Uri uri = data.Data;
-                uploadlogoimageView.SetImageURI(uri);
-                Logo = uri.ToString();
+                profilePicture.SetImageURI(uri);
+
+                profilePicture.DrawingCacheEnabled = true;
+
+                profilePicture.BuildDrawingCache();
+
+                Android.Graphics.Bitmap bm = profilePicture.GetDrawingCache(true);
+
+                MemoryStream stream = new MemoryStream();
+                bm.Compress(Android.Graphics.Bitmap.CompressFormat.Png, 100, stream);
+                byte[] byteArray = stream.ToArray();
+               // String img_str = Base64.encodeToString(image, 0);
+                Logo = Base64.EncodeToString(byteArray, 0); 
             }
         }
 
-        //public byte[] GetBytesFromBitmap(Bitmap bitmap)
-        //{
-        //    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        //    bitmap.Compress(CompressFormat.Jpeg, 70, stream);
-        //    return stream.ToByteArray();
-        //}
 
         public void OnCheckedChanged(object sender, EventArgs e)
         {
             bool isChecked = userType.Checked;
             if (isChecked)
             {
-                uploadlogo.Visibility = ViewStates.Visible;
                 businessName.Visibility = ViewStates.Visible;
                 registrationNumber.Visibility = ViewStates.Visible;
                 websiteLink.Visibility = ViewStates.Visible;
@@ -208,7 +214,6 @@ namespace BusinessSpecial.Droid.Activities
             }
             else
             {
-                uploadlogo.Visibility = ViewStates.Gone;
                 businessName.Visibility = ViewStates.Gone;
                 registrationNumber.Visibility = ViewStates.Gone;
                 websiteLink.Visibility = ViewStates.Gone;

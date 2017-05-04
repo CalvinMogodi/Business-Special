@@ -51,7 +51,7 @@ namespace BusinessSpecial.Droid
                     case "Log Out":
                         intent = new Intent(this, typeof(LoginActivity));
                         break;
-                    case "Register":
+                    case "Register A Friend":
                         intent = new Intent(this, typeof(SignUpActivity));
                         break;
                     case "Post An AD":

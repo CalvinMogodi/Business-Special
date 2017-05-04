@@ -16,11 +16,18 @@ namespace BusinessSpecial.ViewModels
             Title = "Profile";
         }
 
-        public async Task GetUserProfileAsync(string userId)
+        public async Task<User> GetUserProfileAsync(string userId)
         {
             User = await DataStore.GetUserProfileAsync(userId);
 
             IsComplete = User != null ? true : false;
+
+            return User;
+        }
+
+        public async Task<bool> UpdateUserAsync(User user)
+        {
+            return await DataStore.UpdateUserAsync(user);
         }
     }
 }
