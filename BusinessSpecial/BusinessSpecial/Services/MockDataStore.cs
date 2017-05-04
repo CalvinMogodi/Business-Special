@@ -41,6 +41,22 @@ namespace BusinessSpecial.Services
                 return faqsList;
             }
         }
+        public async Task<User> GetUserProfileAsync(string userId)
+        {
+            User user = null;
+            var firebase = new FirebaseClient("https://courierrequest-6a586.firebaseio.com/User");
+            try
+            {
+                user = await firebase.Child(userId).OnceSingleAsync<User>();
+                return user;
+            }
+            catch (Exception ex)
+            {
+                return user;
+            }
+        }
+
+        
         public async Task<User> LoginUserAsync(User user)
         {
             User userDetails = null;

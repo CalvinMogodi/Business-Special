@@ -96,6 +96,9 @@ namespace BusinessSpecial.Droid
 			// aapt resource value: 0x7f0c0001
 			public const int categories = 2131492865;
 			
+			// aapt resource value: 0x7f0c0002
+			public const int categories_choose = 2131492866;
+			
 			// aapt resource value: 0x7f0c0000
 			public const int sections = 2131492864;
 			
