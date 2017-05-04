@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace BusinessSpecial.Services
 {
-    public interface IDataStore<T, U, A>
+    public interface IDataStore<T, U, A, F>
     {
         Task<bool> AddItemAsync(T item);
         Task<bool> SignUpUserAsync(U user);
@@ -20,5 +20,6 @@ namespace BusinessSpecial.Services
 
         Task<bool> AddAdvertAsync(A advert);
         Task<ObservableRangeCollection<A>> GetAdvertsAsync();
+        Task<List<F>> GetFAQAsync();
     }
 }

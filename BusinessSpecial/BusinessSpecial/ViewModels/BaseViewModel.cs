@@ -12,7 +12,7 @@ namespace BusinessSpecial.ViewModel
         /// <summary>
         /// Get the azure service instance
         /// </summary>
-        public IDataStore<Item, User, Advert> DataStore => ServiceLocator.Instance.Get<IDataStore<Item, User, Advert>>();
+        public IDataStore<Item, User, Advert, FAQ> DataStore => ServiceLocator.Instance.Get<IDataStore<Item, User, Advert, FAQ>>();
 
         public bool IsComplete { get; set; }
 

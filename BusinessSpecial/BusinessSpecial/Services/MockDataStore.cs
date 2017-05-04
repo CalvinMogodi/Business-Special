@@ -10,7 +10,7 @@ using BusinessSpecial.Helpers;
 
 namespace BusinessSpecial.Services
 {
-    public class MockDataStore : IDataStore<Item, User, Advert>
+    public class MockDataStore : IDataStore<Item, User, Advert, FAQ>
     {
         bool isInitialized;
         List<Item> items;
@@ -26,6 +26,21 @@ namespace BusinessSpecial.Services
             return await Task.FromResult(true);
         }
 
+        public async Task<List<FAQ>> GetFAQAsync()
+        {
+            List<FAQ> faqsList = new List<FAQ>();
+            var firebase = new FirebaseClient("https://courierrequest-6a586.firebaseio.com/");
+            try
+            {
+                var faqs = await firebase.Child("FAQ").OnceAsync<FAQ>();
+                faqsList.AddRange(faqs.Select(f => f.Object));
+
+                return faqsList;
+            }
+            catch (Exception ex) {
+                return faqsList;
+            }
+        }
         public async Task<User> LoginUserAsync(User user)
         {
             User userDetails = null;

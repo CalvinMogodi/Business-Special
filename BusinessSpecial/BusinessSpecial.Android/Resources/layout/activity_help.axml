@@ -10,40 +10,23 @@
         layout="@layout/toolbar" />
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:layout_below="@id/toolbar"
         android:padding="12dp">
-      <TextView
-          android:id="@+id/textView1"
-          android:text="Help"
-          android:paddingTop="@dimen/small_margin"
-          android:paddingLeft="@dimen/small_margin"
-          android:paddingRight="@dimen/small_margin"
-          style="?android:textAppearanceLarge"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content" />
-      <TextView
-          android:text="@string/version_number"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_below="@android:id/text1"
-          android:padding="@dimen/small_margin"
-          android:ellipsize="end"
-          android:maxLines="4"
-          style="?android:textAppearanceSmall" />
-      <TextView
-          android:text="@string/app_description"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:padding="@dimen/small_margin"
-          android:ellipsize="end"
-          android:maxLines="4"
-          style="?android:textAppearanceMedium" />
-      <Space
-          android:layout_width="match_parent"
-          android:layout_height="0dp"
-          android:layout_weight="1" />
+      <TextView android:id="@+id/Heading"
+            android:text="Frequently Asked Questions"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:padding="5dp"/>
+      <ListView android:id="@+id/help_list"
+           android:layout_width="fill_parent"
+           android:layout_height="100dp"
+           android:cacheColorHint="#FFDAFF7F" />
+     
     </LinearLayout>
   </RelativeLayout>
 </ScrollView>
