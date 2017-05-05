@@ -3,185 +3,107 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-      <ImageView
-             android:src="@drawable/profile_generic"
-             android:layout_width="60dp"
-             android:layout_height="60dp"
-             android:id="@+id/viewaccount_profile_picture" />
-      <TextView
-          android:layout_width="fill_parent"
-          android:layout_height="1px"
-          android:text=" "
-          android:background="#000000"
-          android:id="@+id/textView" />
-      <RelativeLayout
-        android:id="@+id/displayname"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/small_margin"
-            android:paddingLeft="@dimen/small_margin"
-            android:paddingRight="@dimen/small_margin"
-            android:maxLines="1"
-            android:text="Display Name"
-            android:ellipsize="end"
-            style="?android:textAppearanceMedium" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@android:id/text1"
-            android:padding="@dimen/small_margin"
-            android:ellipsize="end"
-            android:maxLines="4"
-             android:id="@+id/viewaccount_displayname"
-            style="?android:textAppearanceSmall"/>
-      </RelativeLayout>
+  <LinearLayout
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:padding="16dp"
+      android:layout_height="match_parent">
+    <android.support.v7.widget.CardView
+       android:id="@+id/cardview"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:elevation="100dp">
 
-      <RelativeLayout
-    android:id="@+id/businessName"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/small_margin"
-            android:paddingLeft="@dimen/small_margin"
-            android:paddingRight="@dimen/small_margin"
-            android:maxLines="1"
-            android:text="Business Name"
-            android:ellipsize="end"
-            style="?android:textAppearanceMedium" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@android:id/text1"
-            android:padding="@dimen/small_margin"
-            android:ellipsize="end"
-            android:maxLines="4"
-               android:id="@+id/viewaccount_businessname"
-            style="?android:textAppearanceSmall"/>
-      </RelativeLayout>
-      <TextView
-               android:layout_width="fill_parent"
-               android:layout_height="1px"
-               android:text=" "
-               android:background="#000000"
-               android:id="@+id/textView" />
       <LinearLayout
-        android:orientation="horizontal"
-         android:layout_width="match_parent"
-         android:layout_height="30dp"
-        android:id="@+id/businessName"
-        android:visibility="gone">
-        <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:hint="Business Name"
-           android:textAppearance="?android:attr/textAppearanceMedium"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-             android:id="@+id/viewaccount_businessname"
-             android:textAppearance="?android:attr/textAppearanceMedium"/>
-      </LinearLayout>
-      <TextView
-         android:layout_width="fill_parent"
-         android:layout_height="1px"
-         android:text=" "
-         android:background="#000000"
-         android:id="@+id/textView" />
-      <LinearLayout
-  android:orientation="horizontal"
-   android:layout_width="match_parent"
-    android:layout_height="30dp"
-  android:id="@+id/registrationnumber"
-  android:visibility="gone">
-        <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:hint="Registration Number"
-           android:textAppearance="?android:attr/textAppearanceMedium"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/viewaccount_registrationnumber"
-             android:textAppearance="?android:attr/textAppearanceMedium" />
-      </LinearLayout>
-      <TextView
-         android:layout_width="fill_parent"
-         android:layout_height="1px"
-         android:text=" "
-         android:background="#000000"
-         android:id="@+id/textView" />
-      <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-    android:layout_height="30dp"
-                android:id="@+id/websitelink"
-                android:visibility="gone">
-        <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:hint="Website Link"
-           android:textAppearance="?android:attr/textAppearanceMedium"/>
-        <TextView
-            android:hint="Website Link"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-             android:id="@+id/viewaccount_websitelink"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
-      </LinearLayout>
-      <TextView
-         android:layout_width="fill_parent"
-         android:layout_height="1px"
-         android:text=" "
-         android:background="#000000"
-         android:id="@+id/textView" />
-      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="vertical">
+
+        <LinearLayout android:id="@+id/account_linear_layout"
            android:orientation="horizontal"
-            android:layout_width="match_parent"
-    android:layout_height="30dp">
-        <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:hint="Username"
-           android:textAppearance="?android:attr/textAppearanceMedium"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/viewaccount_username"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:hint="Username" />
-      </LinearLayout>
-      <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:text=" "
-            android:background="#000000"
-            android:id="@+id/textView"/>      
-      <LinearLayout android:id="@+id/category_linear_layout"
-            android:orientation="horizontal"
-            android:layout_width="80dp"
-            android:layout_height="80dp">
-            <ImageView
-                android:id="@+id/category_image"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:padding="5dp"
-                android:src="@drawable/category" />
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+          <ImageView
+              android:src="@drawable/profile_generic"
+              android:layout_width="50dp"
+              android:layout_height="50dp"
+              android:id="@+id/viewaccount_profile_picture" />
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:padding="16dp">
             <TextView
-                android:id="@+id/category_text"
-                android:text="Categories"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:padding="5dp"/>
-      </LinearLayout>           
-    </LinearLayout>
+                android:text="Profile"
+                android:id="@+id/viewaccount_account"
+                android:textSize="15sp"/>
+       
+        </RelativeLayout>
+      </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@android:color/darker_gray" />
+          
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp">
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/viewaccount_displayname" />
+          <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/viewaccount_businessname"/>
+          <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:id="@+id/viewaccount_registrationnumber"/>
+          <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:id="@+id/viewaccount_websitelink"/>
+          <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:id="@+id/viewaccount_username" />
+          
+        </LinearLayout>
+      </LinearLayout>
+    </android.support.v7.widget.CardView>
+  
+    
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"        
+        android:layout_height="wrap_content"
+        android:id="@+id/cv1">
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+          <LinearLayout android:id="@+id/category_linear_layout"
+             android:orientation="horizontal"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">            
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/category_text"
+                android:text="Manage Categories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"/>
+              </RelativeLayout>
+          </LinearLayout>
+      </RelativeLayout>
+    </android.support.v7.widget.CardView>
+  </LinearLayout>
 </ScrollView>

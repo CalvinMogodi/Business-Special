@@ -25,15 +25,15 @@ namespace BusinessSpecial.Droid
         {
             base.OnCreate(savedInstanceState);
 
-            var data = Intent.GetStringExtra("data");
+           // var data = Intent.GetStringExtra("data");
 
-            var advert = Newtonsoft.Json.JsonConvert.DeserializeObject<Advert>(data);
-            viewModel = new ItemDetailViewModel(advert);
+            //var advert = Newtonsoft.Json.JsonConvert.DeserializeObject<Advert>(data);
+            //viewModel = new ItemDetailViewModel(advert);
 
-            FindViewById<TextView>(Resource.Id.description).Text = advert.User.DisplayName;
+            //FindViewById<TextView>(Resource.Id.description).Text = advert.User.DisplayName;
 
 
-            SupportActionBar.Title = advert.SpecialName;
+            //SupportActionBar.Title = advert.SpecialName;
         }
 
 

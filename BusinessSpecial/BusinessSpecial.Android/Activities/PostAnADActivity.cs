@@ -62,13 +62,32 @@ namespace BusinessSpecial.Droid.Activities
             ViewModel = new PostAdvertViewModel();
 
             postButton.Click += PostButton_ClickAsync;
-            startDate.Touch += StartDateSelect_OnClick;
-            endDate.Touch += EndDateSelect_OnClick;
+            startDate.Click += (sender, e) => {
+                DateTime today = DateTime.Today;
+                DatePickerDialog dialog = new DatePickerDialog(this, OnStartDateSet, today.Year, today.Month - 1, today.Day);
+                dialog.DatePicker.MinDate = today.Millisecond;
+                dialog.Show();
+            };
+            endDate.Click += (sender, e) => {
+                DateTime today = DateTime.Today;
+                DatePickerDialog dialog = new DatePickerDialog(this, OnEndDateSet, today.Year, today.Month - 1, today.Day);
+                dialog.DatePicker.MinDate = today.Millisecond;
+                dialog.Show();
+            };
             startTime.Touch += (o, e) => ShowDialog(startTimeDialog);
             endTime.Touch += (o, e) => ShowDialog(endTimeDialog);
 
         }
-              
+
+        void OnStartDateSet(object sender, DatePickerDialog.DateSetEventArgs e)
+        {
+            startDate.Text = e.Date.ToLongDateString();
+        }
+
+        void OnEndDateSet(object sender, DatePickerDialog.DateSetEventArgs e)
+        {
+            endDate.Text = e.Date.ToLongDateString();
+        }
 
         private void StartTimePickerCallback(object sender, TimePickerDialog.TimeSetEventArgs e)
         {
@@ -81,15 +100,7 @@ namespace BusinessSpecial.Droid.Activities
             string time = string.Format("{0}:{1}", e.HourOfDay, e.Minute.ToString().PadLeft(2, '0'));
             endTime.Text = time;
         }
-        private void StartDateSelect_OnClick(object sender, EventArgs eventArgs)
-        {
-            DatePickerFragment frag = DatePickerFragment.NewInstance(delegate (DateTime time)
-            {
-                startDate.Text = time.ToLongDateString();
-            });
-            frag.Show(FragmentManager, DatePickerFragment.TAG);
-        }
-
+       
         private async void PostButton_ClickAsync(object sender, EventArgs eventArgs)
         {
             message.Text = "";
@@ -130,16 +141,7 @@ namespace BusinessSpecial.Droid.Activities
 
             messageDialog.HideLoading();
         }
-
-        private void EndDateSelect_OnClick(object sender, EventArgs eventArgs)
-        {
-            DatePickerFragment frag = DatePickerFragment.NewInstance(delegate (DateTime time)
-            {
-                endDate.Text = time.ToLongDateString();
-            });
-            frag.Show(FragmentManager, DatePickerFragment.TAG);
-        }
-
+        
         protected override Dialog OnCreateDialog(int id)
         {
             if (id == startTimeDialog)

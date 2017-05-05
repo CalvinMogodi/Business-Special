@@ -26,10 +26,8 @@ namespace BusinessSpecial.Droid
         AlertDialog CategoryDialog;
         List<string> mSelectedItems;
         TextView displaynameText, businessNameText, registrationnumberText, websitelinkText, wusernameText;
-        ImageView categoryImage, profilePicture;
+        ImageView profilePicture;
         LinearLayout categoryLinearLayout;
-        RelativeLayout displayName, businessName;
-        LinearLayout  registrationnumber, websitelink;
 
         string[] items = { "Adventure Or Theme Park", "Art", "Bar, Club Or Pub", "Beauty And Spa", "Cars", "Fashion", "Games", "Health", "Hotal Or Casino", "Investor Or Bank", "Mall Or Shopping Center", "Music And Radio", "Restaurant Or Gas Station", "Software And Technology", "Sport", "Supermarket", "Travel", "Theater", "Wholesale And Hardware" };
         public ProfileViewModel ViewModel { get; set; }
@@ -52,8 +50,8 @@ namespace BusinessSpecial.Droid
             string userId = appPreferences.getAccessKey();
             ViewModel = new ProfileViewModel();
 
-           User _user = await ViewModel.GetUserProfileAsync(userId);
-           bool[] checkedItems = new bool[19];
+            User _user = await ViewModel.GetUserProfileAsync(userId);
+            bool[] checkedItems = new bool[19];
 
             if (_user != null)
             {
@@ -65,15 +63,15 @@ namespace BusinessSpecial.Droid
                         checkedItems[position] = true;
                     }
                 }
-                
+
                 _user.Id = userId;
                 User = _user;
 
-                displaynameText.Text = _user.DisplayName;
-                businessNameText.Text = _user.BusinessName;
-                registrationnumberText.Text = _user.RegistrationNumber;
-                websitelinkText.Text = _user.WebsiteLink;
-                wusernameText.Text = _user.Username;
+                displaynameText.Text = String.Format("Display Name : {0}", _user.DisplayName);
+                businessNameText.Text = String.Format("Business Name : {0}", _user.BusinessName);
+                registrationnumberText.Text = String.Format("Registration Number : {0}", _user.RegistrationNumber);
+                websitelinkText.Text = String.Format("Website Link : {0}", _user.WebsiteLink);
+                wusernameText.Text = String.Format("Userame : {0}", _user.Username);
 
                 if (!string.IsNullOrEmpty(_user.Logo))
                 {
@@ -83,19 +81,19 @@ namespace BusinessSpecial.Droid
 
                 if (_user.UserTypeId == 3)
                 {
-                    businessName.Visibility = ViewStates.Visible;
-                    registrationnumber.Visibility = ViewStates.Visible;
-                    websitelink.Visibility = ViewStates.Visible;
-                    displayName.Visibility = ViewStates.Gone;
+                    registrationnumberText.Visibility = ViewStates.Visible;
+                    businessNameText.Visibility = ViewStates.Visible;
+                    websitelinkText.Visibility = ViewStates.Visible;
+                    displaynameText.Visibility = ViewStates.Gone;
                 }
                 else
                 {
-                    businessName.Visibility = ViewStates.Gone;
-                    registrationnumber.Visibility = ViewStates.Gone;
-                    websitelink.Visibility = ViewStates.Gone;
-                    displayName.Visibility = ViewStates.Visible;
+                    registrationnumberText.Visibility = ViewStates.Gone;
+                    businessNameText.Visibility = ViewStates.Gone;
+                    websitelinkText.Visibility = ViewStates.Gone;
+                    displaynameText.Visibility = ViewStates.Visible;
                 }
-            }
+                }
 
             AlertDialog.Builder builder = new AlertDialog.Builder(Activity);
             builder.SetTitle("Choose Your Category");
@@ -125,14 +123,9 @@ namespace BusinessSpecial.Droid
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view = inflater.Inflate(Resource.Layout.fragment_about, container, false);           
+            var view = inflater.Inflate(Resource.Layout.fragment_about, container, false);
             categoryLinearLayout = view.FindViewById<LinearLayout>(Resource.Id.category_linear_layout);
-
             profilePicture = view.FindViewById<ImageView>(Resource.Id.viewaccount_profile_picture);
-            displayName = view.FindViewById<RelativeLayout>(Resource.Id.displayname);
-            registrationnumber = view.FindViewById<LinearLayout>(Resource.Id.registrationnumber);
-            websitelink = view.FindViewById<LinearLayout>(Resource.Id.websitelink);
-            businessName = view.FindViewById<RelativeLayout>(Resource.Id.businessName);
 
             displaynameText = view.FindViewById<TextView>(Resource.Id.viewaccount_displayname);
             businessNameText = view.FindViewById<TextView>(Resource.Id.viewaccount_businessname);
@@ -140,20 +133,20 @@ namespace BusinessSpecial.Droid
             websitelinkText = view.FindViewById<TextView>(Resource.Id.viewaccount_websitelink);
             wusernameText = view.FindViewById<TextView>(Resource.Id.viewaccount_username);
 
-            
+
             return view;
         }
-        
+
         public override void OnStart()
         {
             base.OnStart();
             categoryLinearLayout.Click += Categories_Click;
         }
-        
+
 
         private void Categories_Click(object sender, System.EventArgs e)
         {
-            CategoryDialog.Show();            
+            CategoryDialog.Show();
         }
 
         public override void OnStop()

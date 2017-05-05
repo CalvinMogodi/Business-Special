@@ -100,7 +100,7 @@ namespace BusinessSpecial.Droid
             var item = ViewModel.Adverts[e.Position];
             var intent = new Intent(Activity, typeof(BrowseItemDetailActivity));
 
-            intent.PutExtra("data", Newtonsoft.Json.JsonConvert.SerializeObject(item));
+           // intent.PutExtra("data", Newtonsoft.Json.JsonConvert.SerializeObject(item));
             StartActivity(intent);
         }
 

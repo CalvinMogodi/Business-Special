@@ -1965,8 +1965,11 @@ namespace BusinessSpecial.Droid
 			// aapt resource value: 0x7f06007a
 			public const int Heading = 2131099770;
 			
-			// aapt resource value: 0x7f0600b6
-			public const int action0 = 2131099830;
+			// aapt resource value: 0x7f0600a8
+			public const int account_linear_layout = 2131099816;
+			
+			// aapt resource value: 0x7f0600b5
+			public const int action0 = 2131099829;
 			
 			// aapt resource value: 0x7f06005a
 			public const int action_bar = 2131099738;
@@ -1992,8 +1995,8 @@ namespace BusinessSpecial.Droid
 			// aapt resource value: 0x7f06005b
 			public const int action_context_bar = 2131099739;
 			
-			// aapt resource value: 0x7f0600ba
-			public const int action_divider = 2131099834;
+			// aapt resource value: 0x7f0600b9
+			public const int action_divider = 2131099833;
 			
 			// aapt resource value: 0x7f060003
 			public const int action_menu_divider = 2131099651;
@@ -2028,9 +2031,6 @@ namespace BusinessSpecial.Droid
 			// aapt resource value: 0x7f06002a
 			public const int bottom = 2131099690;
 			
-			// aapt resource value: 0x7f0600aa
-			public const int businessName = 2131099818;
-			
 			// aapt resource value: 0x7f060044
 			public const int buttonPanel = 2131099716;
 			
@@ -2046,17 +2046,17 @@ namespace BusinessSpecial.Droid
 			// aapt resource value: 0x7f06009c
 			public const int button_sign_up = 2131099804;
 			
-			// aapt resource value: 0x7f0600b7
-			public const int cancel_action = 2131099831;
+			// aapt resource value: 0x7f0600b6
+			public const int cancel_action = 2131099830;
 			
-			// aapt resource value: 0x7f0600b1
-			public const int category_image = 2131099825;
+			// aapt resource value: 0x7f0600a7
+			public const int cardview = 2131099815;
 			
 			// aapt resource value: 0x7f060081
 			public const int category_linear_layout = 2131099777;
 			
-			// aapt resource value: 0x7f0600b2
-			public const int category_text = 2131099826;
+			// aapt resource value: 0x7f0600b1
+			public const int category_text = 2131099825;
 			
 			// aapt resource value: 0x7f06002b
 			public const int center = 2131099691;
@@ -2070,8 +2070,8 @@ namespace BusinessSpecial.Droid
 			// aapt resource value: 0x7f060052
 			public const int checkbox = 2131099730;
 			
-			// aapt resource value: 0x7f0600bd
-			public const int chronometer = 2131099837;
+			// aapt resource value: 0x7f0600bc
+			public const int chronometer = 2131099836;
 			
 			// aapt resource value: 0x7f060033
 			public const int clip_horizontal = 2131099699;
@@ -2103,6 +2103,9 @@ namespace BusinessSpecial.Droid
 			// aapt resource value: 0x7f06004f
 			public const int customPanel = 2131099727;
 			
+			// aapt resource value: 0x7f0600b0
+			public const int cv1 = 2131099824;
+			
 			// aapt resource value: 0x7f060058
 			public const int decor_content_parent = 2131099736;
 			
@@ -2130,17 +2133,14 @@ namespace BusinessSpecial.Droid
 			// aapt resource value: 0x7f06000e
 			public const int disableHome = 2131099662;
 			
-			// aapt resource value: 0x7f0600a8
-			public const int displayname = 2131099816;
-			
 			// aapt resource value: 0x7f06005c
 			public const int edit_query = 2131099740;
 			
 			// aapt resource value: 0x7f06001c
 			public const int end = 2131099676;
 			
-			// aapt resource value: 0x7f0600c2
-			public const int end_padder = 2131099842;
+			// aapt resource value: 0x7f0600c1
+			public const int end_padder = 2131099841;
 			
 			// aapt resource value: 0x7f060023
 			public const int enterAlways = 2131099683;
@@ -2202,8 +2202,8 @@ namespace BusinessSpecial.Droid
 			// aapt resource value: 0x7f060074
 			public const int imageView1 = 2131099764;
 			
-			// aapt resource value: 0x7f0600c1
-			public const int info = 2131099841;
+			// aapt resource value: 0x7f0600c0
+			public const int info = 2131099840;
 			
 			// aapt resource value: 0x7f060000
 			public const int item_touch_helper_previous_elevation = 2131099648;
@@ -2211,11 +2211,11 @@ namespace BusinessSpecial.Droid
 			// aapt resource value: 0x7f06002f
 			public const int left = 2131099695;
 			
-			// aapt resource value: 0x7f0600bb
-			public const int line1 = 2131099835;
+			// aapt resource value: 0x7f0600ba
+			public const int line1 = 2131099834;
 			
-			// aapt resource value: 0x7f0600bf
-			public const int line3 = 2131099839;
+			// aapt resource value: 0x7f0600be
+			public const int line3 = 2131099838;
 			
 			// aapt resource value: 0x7f06000b
 			public const int listMode = 2131099659;
@@ -2241,26 +2241,26 @@ namespace BusinessSpecial.Droid
 			// aapt resource value: 0x7f06006b
 			public const int main_content = 2131099755;
 			
-			// aapt resource value: 0x7f0600b9
-			public const int media_actions = 2131099833;
-			
-			// aapt resource value: 0x7f0600c8
-			public const int menu_about = 2131099848;
+			// aapt resource value: 0x7f0600b8
+			public const int media_actions = 2131099832;
 			
 			// aapt resource value: 0x7f0600c7
-			public const int menu_contactUs = 2131099847;
-			
-			// aapt resource value: 0x7f0600c9
-			public const int menu_help = 2131099849;
-			
-			// aapt resource value: 0x7f0600c4
-			public const int menu_login = 2131099844;
+			public const int menu_about = 2131099847;
 			
 			// aapt resource value: 0x7f0600c6
-			public const int menu_postAnAD = 2131099846;
+			public const int menu_contactUs = 2131099846;
+			
+			// aapt resource value: 0x7f0600c8
+			public const int menu_help = 2131099848;
+			
+			// aapt resource value: 0x7f0600c3
+			public const int menu_login = 2131099843;
 			
 			// aapt resource value: 0x7f0600c5
-			public const int menu_register = 2131099845;
+			public const int menu_postAnAD = 2131099845;
+			
+			// aapt resource value: 0x7f0600c4
+			public const int menu_register = 2131099844;
 			
 			// aapt resource value: 0x7f06001d
 			public const int middle = 2131099677;
@@ -2328,20 +2328,17 @@ namespace BusinessSpecial.Droid
 			// aapt resource value: 0x7f060007
 			public const int progress_horizontal = 2131099655;
 			
-			// aapt resource value: 0x7f0600b5
-			public const int progressbar_loading = 2131099829;
+			// aapt resource value: 0x7f0600b4
+			public const int progressbar_loading = 2131099828;
 			
 			// aapt resource value: 0x7f060054
 			public const int radio = 2131099732;
 			
-			// aapt resource value: 0x7f0600b4
-			public const int recyclerView = 2131099828;
-			
 			// aapt resource value: 0x7f0600b3
-			public const int refresher = 2131099827;
+			public const int recyclerView = 2131099827;
 			
-			// aapt resource value: 0x7f0600ac
-			public const int registrationnumber = 2131099820;
+			// aapt resource value: 0x7f0600b2
+			public const int refresher = 2131099826;
 			
 			// aapt resource value: 0x7f060030
 			public const int right = 2131099696;
@@ -2445,8 +2442,8 @@ namespace BusinessSpecial.Droid
 			// aapt resource value: 0x7f060097
 			public const int signup_website_link = 2131099799;
 			
-			// aapt resource value: 0x7f0600c3
-			public const int sliding_tabs = 2131099843;
+			// aapt resource value: 0x7f0600c2
+			public const int sliding_tabs = 2131099842;
 			
 			// aapt resource value: 0x7f0600a1
 			public const int snackbar_action = 2131099809;
@@ -2475,8 +2472,8 @@ namespace BusinessSpecial.Droid
 			// aapt resource value: 0x7f060031
 			public const int start = 2131099697;
 			
-			// aapt resource value: 0x7f0600b8
-			public const int status_bar_latest_event_content = 2131099832;
+			// aapt resource value: 0x7f0600b7
+			public const int status_bar_latest_event_content = 2131099831;
 			
 			// aapt resource value: 0x7f060065
 			public const int submit_area = 2131099749;
@@ -2487,11 +2484,11 @@ namespace BusinessSpecial.Droid
 			// aapt resource value: 0x7f060084
 			public const int tabs = 2131099780;
 			
-			// aapt resource value: 0x7f0600c0
-			public const int text = 2131099840;
+			// aapt resource value: 0x7f0600bf
+			public const int text = 2131099839;
 			
-			// aapt resource value: 0x7f0600be
-			public const int text2 = 2131099838;
+			// aapt resource value: 0x7f0600bd
+			public const int text2 = 2131099837;
 			
 			// aapt resource value: 0x7f06004d
 			public const int textSpacerNoButtons = 2131099725;
@@ -2502,8 +2499,8 @@ namespace BusinessSpecial.Droid
 			// aapt resource value: 0x7f06006a
 			public const int textView1 = 2131099754;
 			
-			// aapt resource value: 0x7f0600bc
-			public const int time = 2131099836;
+			// aapt resource value: 0x7f0600bb
+			public const int time = 2131099835;
 			
 			// aapt resource value: 0x7f060043
 			public const int title = 2131099715;
@@ -2538,29 +2535,29 @@ namespace BusinessSpecial.Droid
 			// aapt resource value: 0x7f06000a
 			public const int view_offset_helper = 2131099658;
 			
+			// aapt resource value: 0x7f0600aa
+			public const int viewaccount_account = 2131099818;
+			
+			// aapt resource value: 0x7f0600ac
+			public const int viewaccount_businessname = 2131099820;
+			
 			// aapt resource value: 0x7f0600ab
-			public const int viewaccount_businessname = 2131099819;
+			public const int viewaccount_displayname = 2131099819;
 			
 			// aapt resource value: 0x7f0600a9
-			public const int viewaccount_displayname = 2131099817;
-			
-			// aapt resource value: 0x7f0600a7
-			public const int viewaccount_profile_picture = 2131099815;
+			public const int viewaccount_profile_picture = 2131099817;
 			
 			// aapt resource value: 0x7f0600ad
 			public const int viewaccount_registrationnumber = 2131099821;
 			
-			// aapt resource value: 0x7f0600b0
-			public const int viewaccount_username = 2131099824;
-			
 			// aapt resource value: 0x7f0600af
-			public const int viewaccount_websitelink = 2131099823;
+			public const int viewaccount_username = 2131099823;
+			
+			// aapt resource value: 0x7f0600ae
+			public const int viewaccount_websitelink = 2131099822;
 			
 			// aapt resource value: 0x7f060085
 			public const int viewpager = 2131099781;
-			
-			// aapt resource value: 0x7f0600ae
-			public const int websitelink = 2131099822;
 			
 			// aapt resource value: 0x7f060022
 			public const int withText = 2131099682;
