@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Android.Graphics;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace BusinessSpecial.Models
     public class Advert
     {
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("category")]
         public string Category { get; set; }
@@ -44,5 +45,7 @@ namespace BusinessSpecial.Models
 
         [JsonProperty("user")]
         public User User { get; set; }
+        
+        public string Logo { get; set; }
     }
 }

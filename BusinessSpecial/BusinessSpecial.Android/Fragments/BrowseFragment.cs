@@ -13,6 +13,7 @@ using BusinessSpecial.Services;
 using System.Threading.Tasks;
 using BusinessSpecial.Model;
 using BusinessSpecial.Models;
+using BusinessSpecial.Droid.Helpers;
 
 namespace BusinessSpecial.Droid
 {
@@ -40,7 +41,7 @@ namespace BusinessSpecial.Droid
             ServiceLocator.Instance.Register<MockDataStore, MockDataStore>();
 
             ViewModel = new ItemsViewModel();
-             loadItems = ViewModel.GetAdvertsAsync();
+            loadItems = ViewModel.GetAdvertsAsync();
 
 
             //MessagingCenter.Subscribe<AddItemActivity, Advert>(this, "AddItem", async (obj, advert) =>
@@ -53,8 +54,7 @@ namespace BusinessSpecial.Droid
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             View view = inflater.Inflate(Resource.Layout.fragment_browse, container, false);
-            var recyclerView =
-                view.FindViewById<RecyclerView>(Resource.Id.recyclerView);
+            var recyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView);
 
             recyclerView.HasFixedSize = true;
             recyclerView.SetAdapter(adapter = new BrowseItemsAdapter(Activity, ViewModel));
@@ -101,7 +101,7 @@ namespace BusinessSpecial.Droid
             var intent = new Intent(Activity, typeof(BrowseItemDetailActivity));
 
             intent.PutExtra("data", Newtonsoft.Json.JsonConvert.SerializeObject(item));
-            Activity.StartActivity(intent);
+            StartActivity(intent);
         }
 
         private async void Refresher_Refresh(object sender, EventArgs e)
@@ -148,11 +148,14 @@ namespace BusinessSpecial.Droid
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             var advert = viewModel.Adverts[position];
+            Context mContext = Android.App.Application.Context;
+            AppPreferences appPreferences = new AppPreferences(mContext);
 
             // Replace the contents of the view with that element
             var myHolder = holder as MyViewHolder;
-            myHolder.TextView.Text = advert.SpecialName;
-            myHolder.DetailTextView.Text = advert.Category;
+            myHolder.TextView.Text =  advert.User.DisplayName; 
+            myHolder.DetailTextView.Text = String.Format("{0} ({1} - {2})", advert.SpecialName, advert.StartDate, advert.EndDate);
+            myHolder.ProfilePictureImageView.SetImageBitmap(appPreferences.StringToBitMap(advert.Logo)); 
         }
 
         public override int ItemCount => viewModel.Adverts.Count;
@@ -165,11 +168,14 @@ namespace BusinessSpecial.Droid
         public TextView TextView { get; set; }
         public TextView DetailTextView { get; set; }
 
+        public ImageView ProfilePictureImageView { get; set; }
+
         public MyViewHolder(View itemView, Action<RecyclerClickEventArgs> clickListener,
                             Action<RecyclerClickEventArgs> longClickListener) : base(itemView)
         {
             TextView = itemView.FindViewById<TextView>(Android.Resource.Id.Text1);
             DetailTextView = itemView.FindViewById<TextView>(Android.Resource.Id.Text2);
+            ProfilePictureImageView = itemView.FindViewById<ImageView>(Resource.Id.imageView1);
             itemView.Click += (sender, e) => clickListener(new RecyclerClickEventArgs { View = itemView, Position = AdapterPosition });
             itemView.LongClick += (sender, e) => longClickListener(new RecyclerClickEventArgs { View = itemView, Position = AdapterPosition });
         }

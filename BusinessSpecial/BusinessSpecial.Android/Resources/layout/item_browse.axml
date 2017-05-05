@@ -11,6 +11,18 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+      <LinearLayout android:id="@+id/category_linear_layout"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <ImageView
+             android:src="@drawable/profile_generic"
+             android:layout_width="60dp"
+             android:layout_height="60dp"
+             android:id="@+id/imageView1" />
+      <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <TextView
             android:id="@android:id/text1"
             android:layout_width="match_parent"
@@ -32,5 +44,7 @@
             android:maxLines="4"
             style="?android:textAppearanceSmall"
             tools:text="Description goes here" />
+      </RelativeLayout>
+      </LinearLayout>
     </RelativeLayout>
 </android.support.v7.widget.CardView>

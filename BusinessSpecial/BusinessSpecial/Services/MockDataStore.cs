@@ -101,6 +101,7 @@ namespace BusinessSpecial.Services
         {
             User userDetails = null;
             List<User> userList = new List<User>();
+            adverts = new ObservableRangeCollection<Advert>();
             var firebase = new FirebaseClient("https://courierrequest-6a586.firebaseio.com/");
             try
             {
@@ -112,25 +113,35 @@ namespace BusinessSpecial.Services
                     if (item.Object.Password == user.Password && item.Object.Username.ToLower().Trim() == user.Username.ToLower().Trim())
                     {
                         userDetails = item.Object;
+                    }
+                }
 
+                if (userDetails != null)
+                {
+                    if (userDetails.Categories != null)
+                    {
                         DateTime today = DateTime.Now;
                         var advertsList = await firebase.Child("Advert").OnceAsync<Advert>();
                         foreach (var advert in advertsList)
                         {
+                            bool addAdvert = userDetails.Categories.Contains(advert.Object.Category);
                             DateTime advertDate = Convert.ToDateTime(advert.Object.StartDate);
-                            if (advertDate >= today)
-                            {
-                                adverts.Add(advert.Object);
 
-                                foreach (var _advert in adverts)
+                            if (addAdvert && advertDate >= today)
+                            {
+                             
+                                var _user = userList.FirstOrDefault(u => u.Id.Trim() == advert.Object.UserId.Trim());
+                                if (_user != null)
                                 {
-                                    _advert.User = userList.FirstOrDefault(u => u.Id.Trim() == _advert.UserId.Trim());
+                                    advert.Object.User = _user;
+                                    advert.Object.Logo = _user.Logo;
+                                    adverts.Add(advert.Object);
                                 }
+                                
                             }
                         }
                     }
                 }
-
                 return userDetails;
             }
             catch (Exception ex)
@@ -201,8 +212,8 @@ namespace BusinessSpecial.Services
             var firebase = new FirebaseClient("https://courierrequest-6a586.firebaseio.com/");
             try
             {
-                adverts = new ObservableRangeCollection<Advert>();
-                DateTime today = DateTime.Now;
+                //adverts = new ObservableRangeCollection<Advert>();
+                //DateTime today = DateTime.Now;
 
                 //var advertsList = await firebase.Child("Advert").OnceAsync<Advert>();
                 //foreach (var item in advertsList)

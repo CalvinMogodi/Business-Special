@@ -27,10 +27,11 @@ namespace BusinessSpecial.Droid
         List<string> mSelectedItems;
         TextView displaynameText, businessNameText, registrationnumberText, websitelinkText, wusernameText;
         ImageView categoryImage, profilePicture;
-        LinearLayout categoryLinearLayout, accountLinearLayout;
-        LinearLayout displayName, registrationnumber, websitelink, businessName;
+        LinearLayout categoryLinearLayout;
+        RelativeLayout displayName, businessName;
+        LinearLayout  registrationnumber, websitelink;
 
-        string[] items = {  "Adventure Or Theme Park",    "Art",    "Bar, Club Or Pub",    "Beauty And Spa",    "Cars",    "Fashion",    "Games",    "Health",    "Hotal Or Casino",    "Investor Or Bank",    "Mall Or Shopping Center",    "Music And Radio",    "Restaurant Or Gas Station",    "Software And Technology",    "Sport",    "Supermarket",    "Travel","Theater","Wholesale And Hardware"};
+        string[] items = { "Adventure Or Theme Park", "Art", "Bar, Club Or Pub", "Beauty And Spa", "Cars", "Fashion", "Games", "Health", "Hotal Or Casino", "Investor Or Bank", "Mall Or Shopping Center", "Music And Radio", "Restaurant Or Gas Station", "Software And Technology", "Sport", "Supermarket", "Travel", "Theater", "Wholesale And Hardware" };
         public ProfileViewModel ViewModel { get; set; }
 
         public override void OnCreate(Bundle savedInstanceState)
@@ -47,13 +48,24 @@ namespace BusinessSpecial.Droid
             ViewModel = new ProfileViewModel();
 
             Context mContext = Android.App.Application.Context;
-            AppPreferences ap = new AppPreferences(mContext);
-            string userId = ap.getAccessKey();
+            AppPreferences appPreferences = new AppPreferences(mContext);
+            string userId = appPreferences.getAccessKey();
             ViewModel = new ProfileViewModel();
 
            User _user = await ViewModel.GetUserProfileAsync(userId);
+           bool[] checkedItems = new bool[19];
+
             if (_user != null)
             {
+                if (_user.Categories != null)
+                {
+                    foreach (var item in _user.Categories)
+                    {
+                        int position = Array.IndexOf(items, item);
+                        checkedItems[position] = true;
+                    }
+                }
+                
                 _user.Id = userId;
                 User = _user;
 
@@ -65,7 +77,7 @@ namespace BusinessSpecial.Droid
 
                 if (!string.IsNullOrEmpty(_user.Logo))
                 {
-                    Bitmap bitmap = StringToBitMap(_user.Logo);
+                    Bitmap bitmap = appPreferences.StringToBitMap(_user.Logo);
                     profilePicture.SetImageBitmap(bitmap);
                 }
 
@@ -83,75 +95,12 @@ namespace BusinessSpecial.Droid
                     websitelink.Visibility = ViewStates.Gone;
                     displayName.Visibility = ViewStates.Visible;
                 }
-            }           
-        }
-
-        public Bitmap StringToBitMap(String encodedString)
-        {
-            try
-            {
-                byte[] encodeByte = Base64.Decode(encodedString, Base64.Default);
-                Bitmap bitmap = BitmapFactory.DecodeByteArray(encodeByte, 0, encodeByte.Length);
-                return bitmap;
             }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-            var view = inflater.Inflate(Resource.Layout.fragment_about, container, false);           
-            categoryLinearLayout = view.FindViewById<LinearLayout>(Resource.Id.category_linear_layout);
-
-            profilePicture = view.FindViewById<ImageView>(Resource.Id.viewaccount_profile_picture);
-            displayName = view.FindViewById<LinearLayout>(Resource.Id.displayname);
-            registrationnumber = view.FindViewById<LinearLayout>(Resource.Id.registrationnumber);
-            websitelink = view.FindViewById<LinearLayout>(Resource.Id.websitelink);
-            businessName = view.FindViewById<LinearLayout>(Resource.Id.businessName);
-
-            displaynameText = view.FindViewById<TextView>(Resource.Id.viewaccount_displayname);
-            businessNameText = view.FindViewById<TextView>(Resource.Id.viewaccount_businessname);
-            registrationnumberText = view.FindViewById<TextView>(Resource.Id.viewaccount_registrationnumber);
-            websitelinkText = view.FindViewById<TextView>(Resource.Id.viewaccount_websitelink);
-            wusernameText = view.FindViewById<TextView>(Resource.Id.viewaccount_username);
-
-            return view;
-        }
-
-       
-
-        public override void OnStart()
-        {
-            base.OnStart();
-            categoryLinearLayout.Click += Categories_Click;
-        }
-        
-
-        private void Categories_Click(object sender, System.EventArgs e)
-        {
-            bool[] checkedItems = new bool[19];
-            if (User != null)
-            {
-                if (User.Categories != null)
-                {
-                    foreach (var item in User.Categories)
-                    {
-                        int position = Array.IndexOf(items, item);
-                        checkedItems[position] = true;
-                    }
-                }                
-            }
-            
-           
             AlertDialog.Builder builder = new AlertDialog.Builder(Activity);
             builder.SetTitle("Choose Your Category");
 
-            builder.SetMultiChoiceItems(Resource.Array.categories_choose, checkedItems, delegate {
-
-
-            });
+            builder.SetMultiChoiceItems(Resource.Array.categories_choose, checkedItems, delegate { });
             builder.SetNegativeButton("Cancel", delegate { CategoryDialog.Cancel(); });
             builder.SetPositiveButton("OK", delegate {
                 var sads = CategoryDialog.ListView.CheckedItemPositions;
@@ -172,11 +121,39 @@ namespace BusinessSpecial.Droid
                 CategoryDialog.Cancel();
             });
             CategoryDialog = builder.Create();
-            if (!CategoryDialog.IsShowing) {
-              
-                CategoryDialog.Show();
-            }
+        }
+
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            var view = inflater.Inflate(Resource.Layout.fragment_about, container, false);           
+            categoryLinearLayout = view.FindViewById<LinearLayout>(Resource.Id.category_linear_layout);
+
+            profilePicture = view.FindViewById<ImageView>(Resource.Id.viewaccount_profile_picture);
+            displayName = view.FindViewById<RelativeLayout>(Resource.Id.displayname);
+            registrationnumber = view.FindViewById<LinearLayout>(Resource.Id.registrationnumber);
+            websitelink = view.FindViewById<LinearLayout>(Resource.Id.websitelink);
+            businessName = view.FindViewById<RelativeLayout>(Resource.Id.businessName);
+
+            displaynameText = view.FindViewById<TextView>(Resource.Id.viewaccount_displayname);
+            businessNameText = view.FindViewById<TextView>(Resource.Id.viewaccount_businessname);
+            registrationnumberText = view.FindViewById<TextView>(Resource.Id.viewaccount_registrationnumber);
+            websitelinkText = view.FindViewById<TextView>(Resource.Id.viewaccount_websitelink);
+            wusernameText = view.FindViewById<TextView>(Resource.Id.viewaccount_username);
+
             
+            return view;
+        }
+        
+        public override void OnStart()
+        {
+            base.OnStart();
+            categoryLinearLayout.Click += Categories_Click;
+        }
+        
+
+        private void Categories_Click(object sender, System.EventArgs e)
+        {
+            CategoryDialog.Show();            
         }
 
         public override void OnStop()

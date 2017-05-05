@@ -24,8 +24,12 @@ namespace BusinessSpecial.Droid.Activities
     public class SignUpActivity : Activity
     {
         Button signUpButton; Switch userType; LinearLayout uploadlogo;
-        EditText username, password, displayName, confirmPassword, businessName, registrationNumber, websiteLink;
+        EditText username, password, displayName, confirmPassword, businessName, registrationNumber, websiteLink, categories;
         TextView message;
+        List<string> mSelectedItems;
+        AlertDialog categoryDialog;
+        string[] items = { "Adventure Or Theme Park", "Art", "Bar, Club Or Pub", "Beauty And Spa", "Cars", "Fashion", "Games", "Health", "Hotal Or Casino", "Investor Or Bank", "Mall Or Shopping Center", "Music And Radio", "Restaurant Or Gas Station", "Software And Technology", "Sport", "Supermarket", "Travel", "Theater", "Wholesale And Hardware" };
+
         public string Logo { get; set; }
         public static readonly int PickImageId = 1000;
         ImageView profilePicture;
@@ -55,6 +59,7 @@ namespace BusinessSpecial.Droid.Activities
                 Password = password.Text.Trim(),
                 Logo = Logo,
                 UserTypeId = 2,
+                Categories = mSelectedItems,
             };
 
             if (userType.Checked)
@@ -69,8 +74,7 @@ namespace BusinessSpecial.Droid.Activities
             {
                 _user.DisplayName = displayName.Text.Trim();
             }
-
-
+            
             await ViewModel.SignUpUser(_user);
             if (ViewModel.IsSignUp)
                 StartActivity(new Intent(this, typeof(LoginActivity)));
@@ -117,7 +121,7 @@ namespace BusinessSpecial.Droid.Activities
             else {
                 if (!validation.IsRequired(displayName.Text))
                 {
-                    username.SetError("This field is required", icon);
+                    displayName.SetError("This field is required", icon);
                     FormIsValid = false;
                 }
             }
@@ -128,6 +132,14 @@ namespace BusinessSpecial.Droid.Activities
                 username.SetError("Invalid email address", icon);
                 FormIsValid = false;
             }
+
+            if (mSelectedItems == null)
+            {                
+                MessageDialog messageDialog = new MessageDialog();
+                messageDialog.SendToast("Please choose atleast one category");
+                FormIsValid = false;
+            }
+            
 
             if (!validation.IsValidPassword(password.Text))
             {
@@ -158,22 +170,63 @@ namespace BusinessSpecial.Droid.Activities
             SetContentView(Resource.Layout.activity_sign_up);
             signUpButton = FindViewById<Button>(Resource.Id.button_sign_up);
             userType = FindViewById<Switch>(Resource.Id.signup_usertype);
-            uploadlogo = FindViewById<LinearLayout>(Resource.Id.signup_uploadlogo);
             username = FindViewById<EditText>(Resource.Id.signup_etUsername);
             businessName = FindViewById<EditText>(Resource.Id.signup_businessname);
             registrationNumber = FindViewById<EditText>(Resource.Id.signup_registration_number);
             websiteLink = FindViewById<EditText>(Resource.Id.signup_website_link);
             displayName = FindViewById<EditText>(Resource.Id.signup_displayname);
             confirmPassword = FindViewById<EditText>(Resource.Id.signup_confirm_password);
-            password = FindViewById<EditText>(Resource.Id.signup_password);            
+            password = FindViewById<EditText>(Resource.Id.signup_password);
+            categories = FindViewById<EditText>(Resource.Id.signup_categories);
             message = FindViewById<TextView>(Resource.Id.signup_tvmessage);
             profilePicture = FindViewById<ImageView>(Resource.Id.signup_profile_picture);
+            categories.Touch += Categories_Click;
 
             userType.Click += OnCheckedChanged;
             profilePicture.Click += SelectLogoButton_Click;
             ViewModel = new SignUpViewModel();
             
             signUpButton.Click += SignUpButton_ClickAsync;
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.SetTitle("Choose Your Category");
+            builder.SetMultiChoiceItems(Resource.Array.categories_choose, null, delegate { });
+            builder.SetNegativeButton("Cancel", delegate { categoryDialog.Cancel(); });
+            builder.SetPositiveButton("OK", delegate {
+                var sads = categoryDialog.ListView.CheckedItemPositions;
+                List<string> selectedItems = new List<string>();
+                categories.Text = "";
+                for (int i = 0; i < items.Length; i++)
+                {
+                    var isChecked = sads.Get(i);
+                    if (isChecked)
+                    {
+                        var fd = items.ElementAt(i);
+                        selectedItems.Add(fd);
+                        if (categories.Text.Length > 30)
+                        {
+                            categories.Text = categories.Text.Substring(0, 31);
+                            categories.Text = categories.Text + "...";
+                        }
+                        else {
+                            if (string.IsNullOrWhiteSpace(categories.Text))
+                            {
+                                categories.Text = fd;
+                            }
+                            else
+                            {
+                                categories.Text = categories.Text + ", " + fd;
+                            }
+                        }
+                        
+                    }
+                }
+
+                mSelectedItems = selectedItems;
+                
+                categoryDialog.Cancel();
+            });
+            categoryDialog = builder.Create();
         }
 
         private void SelectLogoButton_Click(object sender, EventArgs eventArgs)
@@ -223,6 +276,11 @@ namespace BusinessSpecial.Droid.Activities
                 websiteLink.Visibility = ViewStates.Gone;
                 displayName.Visibility = ViewStates.Visible;
             }
+        }
+
+        private void Categories_Click(object sender, System.EventArgs e)
+        {            
+            categoryDialog.Show();
         }
 
     }

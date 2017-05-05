@@ -95,6 +95,10 @@ namespace BusinessSpecial.Droid.Activities
             message.Text = "";
             if (!ValidateForm())
                 return;
+
+            MessageDialog messageDialog = new MessageDialog();
+            messageDialog.ShowLoading();
+
             Context mContext = Android.App.Application.Context;
             AppPreferences ap = new AppPreferences(mContext);
             string userId = ap.getAccessKey();
@@ -124,6 +128,7 @@ namespace BusinessSpecial.Droid.Activities
             else
                 message.Text = "Unable to post you advert, please try again!";
 
+            messageDialog.HideLoading();
         }
 
         private void EndDateSelect_OnClick(object sender, EventArgs eventArgs)
@@ -187,7 +192,7 @@ namespace BusinessSpecial.Droid.Activities
             }
             if (!validation.IsValidPhone(phone.Text))
             {
-                email.SetError("Invalid mobile number", icon);
+                phone.SetError("Invalid mobile number", icon);
                 FormIsValid = false;
             }
             if (!validation.IsRequired(specialName.Text))

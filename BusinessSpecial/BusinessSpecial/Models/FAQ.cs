@@ -10,7 +10,7 @@ namespace BusinessSpecial.Models
     public class FAQ
     {
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("question")]
         public string Question { get; set; }
