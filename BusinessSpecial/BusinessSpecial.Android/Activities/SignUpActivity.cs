@@ -45,6 +45,8 @@ namespace BusinessSpecial.Droid.Activities
             if (!ValidateForm())
                 return;
 
+            MessageDialog messageDialog = new MessageDialog();
+            messageDialog.ShowLoading();
             message.Text = "";
 
             var _user = new User()
@@ -74,6 +76,8 @@ namespace BusinessSpecial.Droid.Activities
                 StartActivity(new Intent(this, typeof(LoginActivity)));
             else
                 message.Text = "Unable to sign you up, please try again";
+
+            messageDialog.HideLoading();
         }
 
 

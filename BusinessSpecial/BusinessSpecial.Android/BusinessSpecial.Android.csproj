@@ -104,6 +104,7 @@
     <Compile Include="Activities\AddItemActivity.cs" />
     <Compile Include="Activities\BrowseItemDetailActivity.cs" />
     <Compile Include="Activities\ContactActivity.cs" />
+    <Compile Include="Activities\ForgotPasswordActivity.cs" />
     <Compile Include="Activities\LoginActivity.cs" />
     <Compile Include="Activities\PostAnADActivity.cs" />
     <Compile Include="Activities\SignUpActivity.cs" />
@@ -131,6 +132,9 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_browse.axml" />
     <AndroidResource Include="Resources\layout\activity_post_an_ad.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\activity_forgot_password.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <None Include="Resources\values-v19\AboutResources.txt" />

@@ -37,7 +37,8 @@ namespace BusinessSpecial.Services
 
                 return faqsList;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 return faqsList;
             }
         }
@@ -48,7 +49,7 @@ namespace BusinessSpecial.Services
             try
             {
                 user = await firebase.Child(userId).OnceSingleAsync<User>();
-                
+
                 return user;
             }
             catch (Exception ex)
@@ -72,21 +73,43 @@ namespace BusinessSpecial.Services
             }
         }
 
+        public async Task<User> ChangePasswordAsync(User user)
+        {
+            User userDetails = null;
+            var firebase = new FirebaseClient("https://courierrequest-6a586.firebaseio.com/");
+            try
+            {
+                var users = await firebase.Child("User").OnceAsync<User>();
+                foreach (var item in users)
+                {                   
+                    if (item.Object.Username.ToLower().Trim() == user.Username.ToLower().Trim())
+                    {
+                        userDetails = item.Object;
+                        userDetails.Id = item.Key;
+                        await UpdateUserAsync(userDetails);
+                    }
+                }
+                return userDetails;
+            }
+            catch (Exception ex) {
+                return userDetails;
+            }
+            
+        }
 
         public async Task<User> LoginUserAsync(User user)
         {
             User userDetails = null;
-            List<User> userList =new List<User>();
+            List<User> userList = new List<User>();
             var firebase = new FirebaseClient("https://courierrequest-6a586.firebaseio.com/");
             try
-            {               
-
+            {
                 var users = await firebase.Child("User").OnceAsync<User>();
                 foreach (var item in users)
                 {
                     item.Object.Id = item.Key;
                     userList.Add(item.Object);
-                    if (item.Object.Password == user.Password && item.Object.Username == user.Username)
+                    if (item.Object.Password == user.Password && item.Object.Username.ToLower().Trim() == user.Username.ToLower().Trim())
                     {
                         userDetails = item.Object;
 
@@ -114,9 +137,9 @@ namespace BusinessSpecial.Services
             {
                 return userDetails;
             }
-            
 
-            
+
+
         }
 
         public async Task<bool> SignUpUserAsync(User user)
@@ -197,7 +220,7 @@ namespace BusinessSpecial.Services
                 return adverts;
             }
 
-           
+
         }
 
         public Task<bool> PullLatestAsync()

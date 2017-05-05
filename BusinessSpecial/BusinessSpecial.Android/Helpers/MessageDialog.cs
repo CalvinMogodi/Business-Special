@@ -8,6 +8,23 @@ namespace BusinessSpecial.Droid
 {
     public class MessageDialog : IMessageDialog
     {
+        ProgressDialog progress;
+        public void ShowLoading()
+        {
+            var activity = CrossCurrentActivity.Current.Activity;
+            progress = new ProgressDialog(activity, Resource.Style.MyTheme);
+            progress.Indeterminate = true;
+            progress.SetProgressStyle(ProgressDialogStyle.Spinner);
+            progress.SetMessage("Loading...");
+            progress.SetCancelable(false);
+           // progress.SetProgressStyle(Resource.Style.Widget_ProgressBar_Small);
+            progress.Create();
+            progress.Show();
+        }
+        public void HideLoading()
+        {
+            progress.Cancel();
+        }
         public void SendMessage(string message, string title = null)
         {
             var activity = CrossCurrentActivity.Current.Activity;

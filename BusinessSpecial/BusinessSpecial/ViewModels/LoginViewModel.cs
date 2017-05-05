@@ -25,5 +25,13 @@ namespace BusinessSpecial.ViewModels
 
             IsAuthenticated = User != null ? true : false;
         }
+
+        public async Task ChangePasswordAsync(User user)
+        {
+            var _user = user as User;
+            User = await DataStore.ChangePasswordAsync(_user);
+
+            IsAuthenticated = User != null ? true : false;
+        }
     }
 }

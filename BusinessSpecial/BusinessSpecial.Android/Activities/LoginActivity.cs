@@ -19,6 +19,7 @@ using Android;
 using Android.Content.PM;
 using BusinessSpecial.Droid.Helpers;
 using BusinessSpecial.Droid.Activities;
+using System.Threading;
 
 namespace BusinessSpecial.Droid
 {
@@ -34,7 +35,7 @@ namespace BusinessSpecial.Droid
 
         public User User { get; set; }
         public LoginViewModel ViewModel { get; set; }
-        public BaseViewModel BaseModel { get; set; }
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -44,9 +45,12 @@ namespace BusinessSpecial.Droid
 
         private async void LoginButton_Click(object sender, EventArgs e)
         {
-            if (!ValidateForm())
+            if (!ValidateForm())               
                 return;
-            FindViewById<ProgressBar>(Resource.Id.loadingPanel).Visibility = ViewStates.Visible;
+
+            MessageDialog messageDialog = new MessageDialog();
+            messageDialog.ShowLoading();
+
             message.Text = "";
             var _user = new User()
             {
@@ -72,7 +76,7 @@ namespace BusinessSpecial.Droid
             else
                 message.Text = "Invaild username or password";
 
-            FindViewById<ProgressBar>(Resource.Id.loadingPanel).Visibility = ViewStates.Gone;
+            messageDialog.HideLoading();
 
         }
 
@@ -116,7 +120,7 @@ namespace BusinessSpecial.Droid
             register.Click += Register_Click;
         }
 
-        public  void Register_Click(object sender, EventArgs e)
+        public void Register_Click(object sender, EventArgs e)
         {
             var intent = new Intent();
             intent = new Intent(this, typeof(SignUpActivity));
@@ -126,7 +130,7 @@ namespace BusinessSpecial.Droid
         public void ForgotPassword_Click(object sender, EventArgs e)
         {
             var intent = new Intent();
-            intent = new Intent(this, typeof(SignUpActivity));
+            intent = new Intent(this, typeof(ForgotPasswordActivity));
             StartActivity(intent);
         }
     }

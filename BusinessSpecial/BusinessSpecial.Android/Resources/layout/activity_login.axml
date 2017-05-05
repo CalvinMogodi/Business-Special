@@ -37,58 +37,38 @@
             android:id="@+id/button_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-      
-      <LinearLayout android:id="@+id/category_linear_layout"
-           android:orientation="horizontal"
-           android:gravity="center"
-           android:layout_width="match_parent"
-           android:paddingTop="10dp"
-           android:layout_height="30dp">
-        <TextView
-          android:id="@+id/login_forgot_password"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:textColor="#00BFFF"
-          android:paddingLeft="80dp"
-          android:text="Forgot Password"
-          android:onClick="ForgotPassword_Click"                
-       android:clickable="true"/>
-        <!--<Button
-           android:backgroundTint="@color/window_background"
-           android:theme="@style/button_primary"
-            android:id="@+id/login_forgot_password"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:textColor="#00BFFF"
-          android:paddingLeft="80dp"
-          android:text="Forgot Password" />-->
-        <Space
-              android:layout_width="match_parent"
-              android:layout_height="0dp"
-              android:layout_weight="0.5" />
-        <TextView
-          android:id="@+id/login_register"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:paddingRight="80dp"
-          android:textColor="#00BFFF"
-          android:text="Register"
-          android:onClick="Register_Click"                
-       android:clickable="true"/>
-      </LinearLayout>
-    
-        <TextView
+       <TextView
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#FF0000"
+             android:gravity="center"
             android:id="@+id/login_tvmessage" />
-        <ProgressBar
-            android:id="@+id/loadingPanel"
-            android:visibility="gone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminate="true"
-            style="?android:attr/progressBarStyleLarge"
-            android:gravity="center" />
+        <LinearLayout
+            android:id="@+id/category_linear_layout"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:paddingTop="10dp"
+            android:layout_height="30dp">
+            <TextView
+                android:id="@+id/login_forgot_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#00BFFF"
+                android:paddingLeft="80dp"
+                android:text="Forgot Password" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5" />
+            <TextView
+                android:id="@+id/login_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="80dp"
+                android:textColor="#00BFFF"
+                android:text="Register"/>
+        </LinearLayout>       
     </LinearLayout>
 </RelativeLayout>

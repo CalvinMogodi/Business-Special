@@ -7,6 +7,7 @@ namespace BusinessSpecial.Services
     public interface IDataStore<T, U, A, F>
     {
         Task<bool> AddItemAsync(T item);
+        Task<U> ChangePasswordAsync(U user);
         Task<U> GetUserProfileAsync(string userId);
         Task<bool> SignUpUserAsync(U user);
         Task<U> LoginUserAsync(U user);

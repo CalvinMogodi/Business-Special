@@ -13,9 +13,9 @@ namespace BusinessSpecial.Droid
         {
             base.OnCreate(savedInstanceState);
 
-            var mainActivityIntent = new Intent(this, typeof(MainActivity));
+            //var mainActivityIntent = new Intent(this, typeof(MainActivity));
 
-            //var mainActivityIntent = new Intent(this, typeof(LoginActivity));
+            var mainActivityIntent = new Intent(this, typeof(LoginActivity));
             //mainActivityIntent.AddFlags(ActivityFlags.ClearTop);
             //mainActivityIntent.AddFlags(ActivityFlags.SingleTop);           
 
