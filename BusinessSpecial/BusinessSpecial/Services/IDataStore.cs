@@ -4,8 +4,9 @@ using System.Threading.Tasks;
 
 namespace BusinessSpecial.Services
 {
-    public interface IDataStore<T, U, A, F>
+    public interface IDataStore<T, U, A, F, UA>
     {
+        Task<bool> AddUserActivityAsync(UA activity);
         Task<bool> AddItemAsync(T item);
         Task<U> ChangePasswordAsync(U user);
         Task<U> GetUserProfileAsync(string userId);

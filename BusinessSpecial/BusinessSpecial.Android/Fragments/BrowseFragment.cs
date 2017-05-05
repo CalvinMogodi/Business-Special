@@ -26,7 +26,7 @@ namespace BusinessSpecial.Droid
         BrowseItemsAdapter adapter;
         SwipeRefreshLayout refresher;
         Task loadItems;
-
+        AlertDialog dialog;
         ProgressBar progress;
         public ItemsViewModel ViewModel
         {
@@ -98,10 +98,45 @@ namespace BusinessSpecial.Droid
         private void Adapter_ItemClick(object sender, RecyclerClickEventArgs e)
         {
             var item = ViewModel.Adverts[e.Position];
-            var intent = new Intent(Activity, typeof(BrowseItemDetailActivity));
 
-           // intent.PutExtra("data", Newtonsoft.Json.JsonConvert.SerializeObject(item));
-            StartActivity(intent);
+            AlertDialog.Builder builder = new AlertDialog.Builder(Activity);
+            // Get the layout inflater
+            LayoutInflater inflater = Activity.LayoutInflater;
+            builder.SetView(inflater.Inflate(Resource.Layout.view_advert, null));
+            builder.SetTitle(item.SpecialName);
+            builder.SetPositiveButton("Like", delegate
+             {
+                 Context mContext = Android.App.Application.Context;
+                 AppPreferences appPreferences = new AppPreferences(mContext);
+
+                 UserActivity userActivity = new UserActivity() { 
+                     AdvertCategory = item.Category,
+                     SpecialName = item.SpecialName,
+                     UserId = appPreferences.getAccessKey(),
+                     Date = DateTime.Now.ToLongDateString(),
+                     ActivityType = "Like Advert",
+                     BusinessName = item.User.DisplayName,
+                     BusinessLoge = item.Logo,
+                     BusinessId = item.User.Id,
+                 };
+                 ViewModel.AddUserActivity(userActivity);
+                 dialog.Cancel();
+             }).SetNegativeButton("Not Now", delegate
+             {
+                 dialog.Cancel();
+             });
+            dialog = builder.Create();
+
+            dialog.Show();
+            dialog.SetCanceledOnTouchOutside(false);
+            InitializeLogin(item);
+
+        }
+
+        private void InitializeLogin(Advert advert)
+        {
+
+            // Create your application here
         }
 
         private async void Refresher_Refresh(object sender, EventArgs e)

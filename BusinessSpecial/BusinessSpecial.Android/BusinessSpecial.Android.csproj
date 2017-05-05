@@ -137,6 +137,9 @@
     <AndroidResource Include="Resources\layout\activity_forgot_password.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\view_advert.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <None Include="Resources\values-v19\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />

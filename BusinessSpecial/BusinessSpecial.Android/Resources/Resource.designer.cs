@@ -2804,6 +2804,9 @@ namespace BusinessSpecial.Droid
 			// aapt resource value: 0x7f03003f
 			public const int toolbar = 2130903103;
 			
+			// aapt resource value: 0x7f030040
+			public const int view_advert = 2130903104;
+			
 			static Layout()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();

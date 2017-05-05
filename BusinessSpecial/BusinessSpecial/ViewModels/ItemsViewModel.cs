@@ -27,6 +27,12 @@ namespace BusinessSpecial.ViewModel
             await DataStore.AddAdvertAsync(_advert);
         }
 
+        public async Task AddUserActivity(UserActivity activity)
+        {
+            var _activity = activity as UserActivity;
+            await DataStore.AddUserActivityAsync(_activity);
+        }
+
         public async Task GetAdvertsAsync()
         {
             //if (IsBusy)
