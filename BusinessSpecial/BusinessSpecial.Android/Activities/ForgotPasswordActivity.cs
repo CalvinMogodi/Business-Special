@@ -76,8 +76,8 @@ namespace BusinessSpecial.Droid.Activities
         private bool ValidateForm()
         {
             Validations validation = new Validations();
-            Android.Graphics.Drawables.Drawable icon = Resources.GetDrawable(Resource.Drawable.error);
-            icon.SetBounds(0, 0, 0, 0);
+            Android.Graphics.Drawables.Drawable icon = Resources.GetDrawable(Resource.Drawable.spam);
+            icon.SetBounds(0, 0, icon.IntrinsicWidth, icon.IntrinsicHeight);
 
             FormIsValid = true;
 

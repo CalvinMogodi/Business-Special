@@ -1931,17 +1931,23 @@ namespace BusinessSpecial.Droid
 			// aapt resource value: 0x7f020052
 			public const int ic_save = 2130837586;
 			
-			// aapt resource value: 0x7f020056
-			public const int notification_template_icon_bg = 2130837590;
+			// aapt resource value: 0x7f020058
+			public const int notification_template_icon_bg = 2130837592;
 			
 			// aapt resource value: 0x7f020053
 			public const int profile_generic = 2130837587;
 			
 			// aapt resource value: 0x7f020054
-			public const int user = 2130837588;
+			public const int spam = 2130837588;
 			
 			// aapt resource value: 0x7f020055
-			public const int xamarin_logo = 2130837589;
+			public const int Spam48 = 2130837589;
+			
+			// aapt resource value: 0x7f020056
+			public const int user = 2130837590;
+			
+			// aapt resource value: 0x7f020057
+			public const int xamarin_logo = 2130837591;
 			
 			static Drawable()
 			{
