@@ -15,6 +15,7 @@ namespace BusinessSpecial.Droid.Activities
     [Activity(Label = "Contact_Activity")]
     public class ContactActivity : Activity
     {
+        EditText message;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -26,6 +27,16 @@ namespace BusinessSpecial.Droid.Activities
         {
             // Create your application here
             SetContentView(Resource.Layout.activity_contact_us);
+            Button sendButton = FindViewById<Button>(Resource.Id.contact_us_send_button);
+            message = FindViewById<EditText>(Resource.Id.contact_us_message);
+            sendButton.Click += SendSMSButton_Click;
+        }
+
+        void SendSMSButton_Click(object sender, EventArgs e)
+        {
+            MessageDialog messageDialog = new MessageDialog();
+            messageDialog.SendSMS(message.Text.Trim());
+            message.Text = "";
         }
     }
 }

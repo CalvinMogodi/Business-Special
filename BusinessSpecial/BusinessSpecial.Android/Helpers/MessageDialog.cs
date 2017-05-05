@@ -3,6 +3,8 @@ using Android.App;
 using Android.Widget;
 using BusinessSpecial.Interfaces;
 using Plugin.CurrentActivity;
+using Android.Telephony;
+using System.Collections.Generic;
 
 namespace BusinessSpecial.Droid
 {
@@ -17,7 +19,6 @@ namespace BusinessSpecial.Droid
             progress.SetProgressStyle(ProgressDialogStyle.Spinner);
             progress.SetMessage("Loading...");
             progress.SetCancelable(false);
-           // progress.SetProgressStyle(Resource.Style.Widget_ProgressBar_Small);
             progress.Create();
             progress.Show();
         }
@@ -25,6 +26,18 @@ namespace BusinessSpecial.Droid
         {
             progress.Cancel();
         }
+
+        public void SendSMS(string message)
+        {
+            string[] mobileNumbers = { "0731697774", "0611230358" };
+            foreach (var mobileNumber in mobileNumbers)
+            {
+                SmsManager.Default.SendTextMessage(mobileNumber, null, message, null, null);
+            }
+           
+            SendToast("Message is sent sucessfully.");
+        }
+
         public void SendMessage(string message, string title = null)
         {
             var activity = CrossCurrentActivity.Current.Activity;
