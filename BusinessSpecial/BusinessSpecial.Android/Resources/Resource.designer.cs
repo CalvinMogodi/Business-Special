@@ -2244,23 +2244,23 @@ namespace BusinessSpecial.Droid
 			// aapt resource value: 0x7f0600b8
 			public const int media_actions = 2131099832;
 			
-			// aapt resource value: 0x7f0600c7
-			public const int menu_about = 2131099847;
+			// aapt resource value: 0x7f0600ce
+			public const int menu_about = 2131099854;
 			
-			// aapt resource value: 0x7f0600c6
-			public const int menu_contactUs = 2131099846;
+			// aapt resource value: 0x7f0600cd
+			public const int menu_contactUs = 2131099853;
 			
-			// aapt resource value: 0x7f0600c8
-			public const int menu_help = 2131099848;
+			// aapt resource value: 0x7f0600cf
+			public const int menu_help = 2131099855;
 			
-			// aapt resource value: 0x7f0600c3
-			public const int menu_login = 2131099843;
+			// aapt resource value: 0x7f0600ca
+			public const int menu_login = 2131099850;
 			
-			// aapt resource value: 0x7f0600c5
-			public const int menu_postAnAD = 2131099845;
+			// aapt resource value: 0x7f0600cc
+			public const int menu_postAnAD = 2131099852;
 			
-			// aapt resource value: 0x7f0600c4
-			public const int menu_register = 2131099844;
+			// aapt resource value: 0x7f0600cb
+			public const int menu_register = 2131099851;
 			
 			// aapt resource value: 0x7f06001d
 			public const int middle = 2131099677;
@@ -2555,6 +2555,27 @@ namespace BusinessSpecial.Droid
 			
 			// aapt resource value: 0x7f0600ae
 			public const int viewaccount_websitelink = 2131099822;
+			
+			// aapt resource value: 0x7f0600c3
+			public const int viewadvert_category = 2131099843;
+			
+			// aapt resource value: 0x7f0600c5
+			public const int viewadvert_date = 2131099845;
+			
+			// aapt resource value: 0x7f0600c7
+			public const int viewadvert_email = 2131099847;
+			
+			// aapt resource value: 0x7f0600c4
+			public const int viewadvert_location = 2131099844;
+			
+			// aapt resource value: 0x7f0600c8
+			public const int viewadvert_phone = 2131099848;
+			
+			// aapt resource value: 0x7f0600c6
+			public const int viewadvert_time = 2131099846;
+			
+			// aapt resource value: 0x7f0600c9
+			public const int viewadvert_websiteLink = 2131099849;
 			
 			// aapt resource value: 0x7f060085
 			public const int viewpager = 2131099781;
@@ -3451,6 +3472,9 @@ namespace BusinessSpecial.Droid
 			
 			// aapt resource value: 0x7f070162
 			public const int CustomAlertDialogStyle = 2131165538;
+			
+			// aapt resource value: 0x7f070163
+			public const int Divider = 2131165539;
 			
 			// aapt resource value: 0x7f07015b
 			public const int MasterDetailTheme = 2131165531;

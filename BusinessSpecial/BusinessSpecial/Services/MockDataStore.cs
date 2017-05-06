@@ -142,6 +142,18 @@ namespace BusinessSpecial.Services
                         }
                     }
                 }
+                UserActivity activity = new UserActivity()
+                {
+                    AdvertCategory = "",
+                    SpecialName = "",
+                    UserId = userDetails.Id,
+                    Date = DateTime.Now.ToString(),
+                    ActivityType = "Login",
+                    BusinessName = "",
+                    BusinessLoge = "",
+                    BusinessId = "",
+                };
+                AddUserActivityAsync(activity);
                 return userDetails;
             }
             catch (Exception ex)
@@ -153,13 +165,11 @@ namespace BusinessSpecial.Services
 
         }
 
-        public async Task<bool> AddUserActivityAsync(UserActivity activity) {
+        public void AddUserActivityAsync(UserActivity activity) {
 
             var firebase = new FirebaseClient("https://courierrequest-6a586.firebaseio.com/");
 
-            await firebase.Child("UserActivity").PostAsync(activity);
-
-            return await Task.FromResult(true);
+            firebase.Child("UserActivity").PostAsync(activity);
         }
         public async Task<bool> SignUpUserAsync(User user)
         {

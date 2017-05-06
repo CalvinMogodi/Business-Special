@@ -30,7 +30,7 @@ namespace BusinessSpecial.ViewModel
         public async Task AddUserActivity(UserActivity activity)
         {
             var _activity = activity as UserActivity;
-            await DataStore.AddUserActivityAsync(_activity);
+             DataStore.AddUserActivityAsync(_activity);
         }
 
         public async Task GetAdvertsAsync()

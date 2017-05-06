@@ -103,7 +103,7 @@ namespace BusinessSpecial.Droid
             // Get the layout inflater
             LayoutInflater inflater = Activity.LayoutInflater;
             builder.SetView(inflater.Inflate(Resource.Layout.view_advert, null));
-            builder.SetTitle(item.SpecialName);
+            builder.SetTitle(String.Format("{0} ({1})", item.User.DisplayName, item.SpecialName));
             builder.SetPositiveButton("Like", delegate
              {
                  Context mContext = Android.App.Application.Context;
@@ -137,6 +137,21 @@ namespace BusinessSpecial.Droid
         {
 
             // Create your application here
+            TextView category = dialog.FindViewById<TextView>(Resource.Id.viewadvert_category);
+            TextView location = dialog.FindViewById<TextView>(Resource.Id.viewadvert_location);
+            TextView date = dialog.FindViewById<TextView>(Resource.Id.viewadvert_date);
+            TextView time = dialog.FindViewById<TextView>(Resource.Id.viewadvert_time);
+            TextView email = dialog.FindViewById<TextView>(Resource.Id.viewadvert_email);
+            TextView phone = dialog.FindViewById<TextView>(Resource.Id.viewadvert_phone);
+            TextView websiteLink = dialog.FindViewById<TextView>(Resource.Id.viewadvert_websiteLink);
+
+            category.Text = string.Format("Category: {0}", advert.Category);
+            location.Text = string.Format("Location: {0}", advert.Location);
+            date.Text = string.Format("Date: {0} - {1}", advert.StartDate, advert.EndDate);
+            time.Text = string.Format("Time: {0} - {1}", advert.StartTime, advert.EndTime);
+            email.Text = string.Format("Email: {0}", advert.Email);
+            phone.Text = string.Format("Phone: {0}", advert.Phone);
+            websiteLink.Text = string.Format("Website: {0}", advert.User.WebsiteLink);
         }
 
         private async void Refresher_Refresh(object sender, EventArgs e)
