@@ -34,20 +34,24 @@ namespace BusinessSpecial.Droid.Activities
             SetContentView(Resource.Layout.activity_help);
             listView = FindViewById<ListView>(Resource.Id.help_list);
             HelpViewModel ViewModel = new HelpViewModel();
+            MessageDialog messageDialog = new MessageDialog();
+
+            messageDialog.ShowLoading();
             await ViewModel.GetFAQsAsync();
             FAQs = new List<FAQ>();
             FAQs = ViewModel.FAQs;
 
-           items = ViewModel.FAQs.Select( f => f.Question.ToString()).ToArray();
+            items = ViewModel.FAQs.Select( f => f.Question.ToString()).ToArray();
             listView.Adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItem1, items);
             listView.ItemClick += Handle_ItemSelected;
+            messageDialog.HideLoading();
         }
        void Handle_ItemSelected(object sender, AdapterView.ItemClickEventArgs e) { 
-        var t = items[e.Position];
-        MessageDialog messageDialog = new MessageDialog();
+            var t = items[e.Position];
+            MessageDialog messageDialog = new MessageDialog();
 
-        FAQ faq = FAQs.FirstOrDefault(f => f.Question.ToLower() == t.ToLower().ToString());
-        messageDialog.SendMessage(faq.Answer, faq.Question);
+            FAQ faq = FAQs.FirstOrDefault(f => f.Question.ToLower() == t.ToLower().ToString());
+            messageDialog.SendMessage(faq.Answer, faq.Question);
         }
 
 

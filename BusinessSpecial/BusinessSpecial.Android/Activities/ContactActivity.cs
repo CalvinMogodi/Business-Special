@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using BusinessSpecial.Helpers;
 
 namespace BusinessSpecial.Droid.Activities
 {
@@ -34,9 +35,28 @@ namespace BusinessSpecial.Droid.Activities
 
         void SendSMSButton_Click(object sender, EventArgs e)
         {
+            if (!ValidateForm())
+                return;
+
             MessageDialog messageDialog = new MessageDialog();
             messageDialog.SendSMS(message.Text.Trim());
             message.Text = "";
         }
-    }
+
+        private bool ValidateForm()
+        {
+            Validations validation = new Validations();
+            Android.Graphics.Drawables.Drawable icon = Resources.GetDrawable(Resource.Drawable.spam);
+            icon.SetBounds(0, 0, icon.IntrinsicWidth, icon.IntrinsicHeight);
+
+            bool formIsValid = true;
+                       
+            if (!validation.IsRequired(message.Text))
+            {
+                message.SetError("This field is required", icon);
+                formIsValid = false;
+            }
+            return formIsValid;
+        }
+        }
 }

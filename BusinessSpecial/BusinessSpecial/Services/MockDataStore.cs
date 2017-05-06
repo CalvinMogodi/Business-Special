@@ -16,7 +16,7 @@ namespace BusinessSpecial.Services
         List<Item> items;
         ObservableRangeCollection<Advert> adverts;
 
-
+        FirebaseClient firebase = new FirebaseClient("https://vert-7c966.firebaseio.com/");
         public async Task<bool> AddItemAsync(Item item)
         {
             await InitializeAsync();
@@ -29,7 +29,7 @@ namespace BusinessSpecial.Services
         public async Task<List<FAQ>> GetFAQAsync()
         {
             List<FAQ> faqsList = new List<FAQ>();
-            var firebase = new FirebaseClient("https://courierrequest-6a586.firebaseio.com/");
+            
             try
             {
                 var faqs = await firebase.Child("FAQ").OnceAsync<FAQ>();
@@ -45,7 +45,7 @@ namespace BusinessSpecial.Services
         public async Task<User> GetUserProfileAsync(string userId)
         {
             User user = null;
-            var firebase = new FirebaseClient("https://courierrequest-6a586.firebaseio.com/User");
+            var firebase = new FirebaseClient("https://vert-7c966.firebaseio.com/User");
             try
             {
                 user = await firebase.Child(userId).OnceSingleAsync<User>();
@@ -60,7 +60,7 @@ namespace BusinessSpecial.Services
 
         public async Task<bool> UpdateUserAsync(User user)
         {
-            var firebase = new FirebaseClient("https://courierrequest-6a586.firebaseio.com/User");
+            var firebase = new FirebaseClient("https://vert-7c966.firebaseio.com/User");
             try
             {
                 await firebase.Child(user.Id).PutAsync(user);
@@ -76,7 +76,7 @@ namespace BusinessSpecial.Services
         public async Task<User> ChangePasswordAsync(User user)
         {
             User userDetails = null;
-            var firebase = new FirebaseClient("https://courierrequest-6a586.firebaseio.com/");
+            var firebase = new FirebaseClient("https://vert-7c966.firebaseio.com/");
             try
             {
                 var users = await firebase.Child("User").OnceAsync<User>();
@@ -102,7 +102,6 @@ namespace BusinessSpecial.Services
             User userDetails = null;
             List<User> userList = new List<User>();
             adverts = new ObservableRangeCollection<Advert>();
-            var firebase = new FirebaseClient("https://courierrequest-6a586.firebaseio.com/");
             try
             {
                 var users = await firebase.Child("User").OnceAsync<User>();
@@ -166,14 +165,11 @@ namespace BusinessSpecial.Services
         }
 
         public void AddUserActivityAsync(UserActivity activity) {
-
-            var firebase = new FirebaseClient("https://courierrequest-6a586.firebaseio.com/");
-
+            
             firebase.Child("UserActivity").PostAsync(activity);
         }
         public async Task<bool> SignUpUserAsync(User user)
         {
-            var firebase = new FirebaseClient("https://courierrequest-6a586.firebaseio.com/");
 
             await firebase.Child("User").PostAsync(user);
 
@@ -183,7 +179,7 @@ namespace BusinessSpecial.Services
 
         public async Task<bool> AddAdvertAsync(Advert advert)
         {
-            var firebase = new FirebaseClient("https://courierrequest-6a586.firebaseio.com/");
+            var firebase = new FirebaseClient("https://vert-7c966.firebaseio.com/");
 
             await firebase.Child("Advert").PostAsync(advert);
 
@@ -227,7 +223,7 @@ namespace BusinessSpecial.Services
 
         public async Task<ObservableRangeCollection<Advert>> GetAdvertsAsync()
         {
-            var firebase = new FirebaseClient("https://courierrequest-6a586.firebaseio.com/");
+            var firebase = new FirebaseClient("https://vert-7c966.firebaseio.com/");
             try
             {
                 //adverts = new ObservableRangeCollection<Advert>();
