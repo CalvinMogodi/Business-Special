@@ -24,7 +24,7 @@ namespace BusinessSpecial.Models
         [JsonProperty("date")]
         public string Date { get; set; }
 
-        [JsonProperty("type")]
+        [JsonProperty("activityType")]
         public string ActivityType { get; set; }
 
         [JsonProperty("businessName")]
