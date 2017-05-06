@@ -30,7 +30,7 @@ namespace BusinessSpecial.Models
         [JsonProperty("businessName")]
         public string BusinessName { get; set; }
 
-        [JsonProperty("businessName")]
+        [JsonProperty("BusinessLoge")]
         public string BusinessLoge { get; set; }
 
         [JsonProperty("businessId")]

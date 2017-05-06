@@ -164,9 +164,17 @@ namespace BusinessSpecial.Services
 
         }
 
-        public void AddUserActivityAsync(UserActivity activity) {
-            
-            firebase.Child("UserActivity").PostAsync(activity);
+        public async Task AddUserActivityAsync(UserActivity activity)
+        {
+            try
+            {
+                await firebase.Child("UserActivity").PostAsync(activity);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
         }
         public async Task<bool> SignUpUserAsync(User user)
         {
