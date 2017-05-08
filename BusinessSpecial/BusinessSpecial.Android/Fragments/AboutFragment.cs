@@ -27,9 +27,8 @@ namespace BusinessSpecial.Droid
         List<string> mSelectedItems;
         TextView displaynameText, businessNameText, registrationnumberText, websitelinkText, wusernameText;
         ImageView profilePicture;
-        LinearLayout categoryLinearLayout;
 
-        string[] items = { "Adventure Or Theme Park", "Art", "Bar, Club Or Pub", "Beauty And Spa", "Cars", "Fashion", "Games", "Health", "Hotal Or Casino", "Investor Or Bank", "Mall Or Shopping Center", "Music And Radio", "Restaurant Or Gas Station", "Software And Technology", "Sport", "Supermarket", "Travel", "Theater", "Wholesale And Hardware" };
+        string[] items = { "Adventure Or Theme Park", "Art", "Bar, Club Or Pub", "Beauty And Spa", "Cars", "Fashion", "Games", "Health", "Hotel Or Casino", "Investor Or Bank", "Mall Or Shopping Center", "Music And Radio", "Restaurant Or Gas Station", "Software And Technology", "Sport", "Supermarket", "Travel", "Theater", "Wholesale And Hardware" };
         public ProfileViewModel ViewModel { get; set; }
 
         public override void OnCreate(Bundle savedInstanceState)
@@ -70,7 +69,7 @@ namespace BusinessSpecial.Droid
                 displaynameText.Text = String.Format("Display Name : {0}", _user.DisplayName);
                 businessNameText.Text = String.Format("Business Name : {0}", _user.BusinessName);
                 registrationnumberText.Text = String.Format("Registration Number : {0}", _user.RegistrationNumber);
-                websitelinkText.Text = String.Format("Website Link : {0}", _user.WebsiteLink);
+                websitelinkText.Text = String.Format("{0}", _user.WebsiteLink);
                 wusernameText.Text = String.Format("Userame : {0}", _user.Username);
 
                 if (!string.IsNullOrEmpty(_user.Logo))
@@ -124,11 +123,9 @@ namespace BusinessSpecial.Droid
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = inflater.Inflate(Resource.Layout.fragment_about, container, false);
-            categoryLinearLayout = view.FindViewById<LinearLayout>(Resource.Id.category_linear_layout);
             profilePicture = view.FindViewById<ImageView>(Resource.Id.viewaccount_profile_picture);
 
             displaynameText = view.FindViewById<TextView>(Resource.Id.viewaccount_displayname);
-            businessNameText = view.FindViewById<TextView>(Resource.Id.viewaccount_businessname);
             registrationnumberText = view.FindViewById<TextView>(Resource.Id.viewaccount_registrationnumber);
             websitelinkText = view.FindViewById<TextView>(Resource.Id.viewaccount_websitelink);
             wusernameText = view.FindViewById<TextView>(Resource.Id.viewaccount_username);
@@ -140,7 +137,7 @@ namespace BusinessSpecial.Droid
         public override void OnStart()
         {
             base.OnStart();
-            categoryLinearLayout.Click += Categories_Click;
+            //categoryLinearLayout.Click += Categories_Click;
         }
 
 
@@ -152,7 +149,7 @@ namespace BusinessSpecial.Droid
         public override void OnStop()
         {
             base.OnStop();
-            categoryLinearLayout.Click += Categories_Click;
+            ///categoryLinearLayout.Click += Categories_Click;
         }
 
         public void BecameVisible()

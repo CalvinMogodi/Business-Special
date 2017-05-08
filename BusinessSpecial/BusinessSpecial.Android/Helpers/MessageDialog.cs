@@ -19,7 +19,7 @@ namespace BusinessSpecial.Droid
             progress.SetProgressStyle(ProgressDialogStyle.Spinner);
             progress.SetMessage("Loading...");
             progress.SetCancelable(false);
-            progress.Create();
+           // progress.Create();
             progress.Show();
         }
         public void HideLoading()

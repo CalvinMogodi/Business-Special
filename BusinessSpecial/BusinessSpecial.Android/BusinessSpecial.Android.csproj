@@ -110,6 +110,7 @@
     <Compile Include="Activities\SignUpActivity.cs" />
     <Compile Include="Activities\HelpActivity.cs" />
     <Compile Include="Fragments\AboutFragment.cs" />
+    <Compile Include="Fragments\FavouritesFragment.cs" />
     <Compile Include="Fragments\DatePickerFragment.cs" />
     <Compile Include="Fragments\IFragmentVisible.cs" />
     <Compile Include="Helpers\MessageDialog.cs" />
@@ -130,7 +131,9 @@
     <AndroidResource Include="Resources\layout\fragment_about.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\fragment_browse.axml" />
+    <AndroidResource Include="Resources\layout\fragment_browse.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\activity_post_an_ad.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -138,6 +141,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\view_advert.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_favourites.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <None Include="Resources\values-v19\AboutResources.txt" />
@@ -241,6 +247,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Spam48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\vert_logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

@@ -59,21 +59,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@android:color/darker_gray" />
-            <TextView
+              <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autoLink="email"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/viewadvert_email" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:id="@+id/viewadvert_phone" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:id="@+id/viewadvert_websiteLink" />
+              <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:autoLink="phone"
+                  android:textAppearance="?android:attr/textAppearanceSmall"
+                  android:id="@+id/viewadvert_phone" />
+              <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:autoLink="web"
+               android:textAppearance="?android:attr/textAppearanceSmall"
+               android:id="@+id/viewadvert_websiteLink" />      
         </LinearLayout>
     </RelativeLayout>
 </ScrollView>

@@ -60,7 +60,7 @@ namespace BusinessSpecial.Droid
                     case "Contact Us":
                         intent = new Intent(this, typeof(ContactActivity));
                         break;
-                    case "About Business Special":
+                    case "About":
                         intent = new Intent(this, typeof(AboutActivity));
                         break;
                     case "Help":
@@ -103,6 +103,7 @@ namespace BusinessSpecial.Droid
             {
                 case 0: return BrowseFragment.NewInstance();
                 case 1: return AboutFragment.NewInstance();
+                case 2: return FavouritesFragment.NewInstance();
             }
             return null;
         }

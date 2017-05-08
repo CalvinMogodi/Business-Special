@@ -187,8 +187,6 @@ namespace BusinessSpecial.Services
 
         public async Task<bool> AddAdvertAsync(Advert advert)
         {
-            var firebase = new FirebaseClient("https://vert-7c966.firebaseio.com/");
-
             await firebase.Child("Advert").PostAsync(advert);
 
             return await Task.FromResult(true);

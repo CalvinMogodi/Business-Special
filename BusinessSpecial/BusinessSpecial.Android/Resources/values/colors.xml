@@ -1,7 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <resources>
-  <color name="primary">#2196F3</color>
-  <color name="primaryDark">#1976D2</color>
-  <color name="accent">#96d1ff</color>
-  <color name="window_background">#F5F5F5</color>
+  <!--Deep Red -->
+  <!--<color name="primary">#8B0000</color>
+  <color name="primaryDark">#1b0000</color>
+  <color name="accent">#b96666</color>
+  <color name="window_background">#f3e5e5</color>-->
+
+  <!--Dark grey -->
+  <!--<color name="primary">#808080</color>
+  <color name="primaryDark">#262626</color>
+  <color name="accent">#a6a6a6</color>
+  <color name="window_background">#d8d8d8</color>-->
+  
+  <!--Dark blue -->
+  <color name="primary">#00008b</color>
+  <color name="primaryDark">#00001b</color>
+  <color name="accent">#3232a2</color>
+  <color name="window_background">#cccce7</color>
+  
 </resources>

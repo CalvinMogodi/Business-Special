@@ -3,6 +3,7 @@
   <string-array name="sections">
     <item>@string/tab1</item>
     <item>@string/tab2</item>
+    <item>@string/tab3</item>
   </string-array>
   <string-array name="categories">
     <item>Select Category</item>
@@ -14,7 +15,7 @@
     <item>Fashion</item>
     <item>Games</item>
     <item>Health</item>
-    <item>Hotal Or Casino</item>
+    <item>Hotel Or Casino</item>
     <item>Investor Or Bank</item>
     <item>Mall Or Shopping Center</item>
     <item>Music And Radio</item>
@@ -35,7 +36,7 @@
     <item>Fashion</item>
     <item>Games</item>
     <item>Health</item>
-    <item>Hotal Or Casino</item>
+    <item>Hotel Or Casino</item>
     <item>Investor Or Bank</item>
     <item>Mall Or Shopping Center</item>
     <item>Music And Radio</item>

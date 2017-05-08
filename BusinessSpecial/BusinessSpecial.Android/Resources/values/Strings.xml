@@ -4,6 +4,7 @@
 	<string name="app_name">Vert</string>
 	<string name="tab1">Specials</string>
 	<string name="tab2">My Profile</string>
+  <string name="tab3">Favourites</string>
   <string name="postAnAd">Post An AD</string>
   <string name="signin">Sign In</string>
   <string name="notnow">Not Now</string>
@@ -19,7 +20,7 @@
   <string name="info">Information</string>
   <string name="hint_description">Description</string>
   <string name="app_description">This app is written in C# and native APIs using the Xamarin Platform. It shares code with its iOS, Android, &amp; Windows versions.</string>
-  <string name="about_vert">Vert is a mobile application to give you instant updates on competitions, sales and events in the categories of your choose.\n You see everything that you want and nothing that you do not want.\n Easy like Pie. \n Personalised Instant and Efficient</string>
+  <string name="about_vert">Vert is a mobile application to give you instant updates on competitions, sales and events in the categories of your choice.\n You see everything that you want and nothing that you do not want.\n Easy like Pie. \n Personalised Instant and Efficient</string>
   <string name="sign_in_text">Sign in with your account to save and sync items</string>
   <string name="signup">Sign Up</string>
   <string name="send">Send</string>

@@ -28,7 +28,7 @@ namespace BusinessSpecial.Droid.Activities
         TextView message;
         List<string> mSelectedItems;
         AlertDialog categoryDialog;
-        string[] items = { "Adventure Or Theme Park", "Art", "Bar, Club Or Pub", "Beauty And Spa", "Cars", "Fashion", "Games", "Health", "Hotal Or Casino", "Investor Or Bank", "Mall Or Shopping Center", "Music And Radio", "Restaurant Or Gas Station", "Software And Technology", "Sport", "Supermarket", "Travel", "Theater", "Wholesale And Hardware" };
+        string[] items = { "Adventure Or Theme Park", "Art", "Bar, Club Or Pub", "Beauty And Spa", "Cars", "Fashion", "Games", "Health", "Hotel Or Casino", "Investor Or Bank", "Mall Or Shopping Center", "Music And Radio", "Restaurant Or Gas Station", "Software And Technology", "Sport", "Supermarket", "Travel", "Theater", "Wholesale And Hardware" };
 
         public string Logo { get; set; }
         public static readonly int PickImageId = 1000;
