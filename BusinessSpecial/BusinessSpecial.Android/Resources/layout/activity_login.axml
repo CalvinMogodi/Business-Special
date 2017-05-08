@@ -55,7 +55,7 @@
                 android:id="@+id/login_forgot_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                  android:theme="@color/accent"
+                android:theme="@color/accent"
                 android:paddingLeft="80dp"
                 android:text="Forgot Password" />
             <Space
@@ -67,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="80dp"
-                  android:theme="@color/accent"
+                android:theme="@color/accent"
                 android:text="Register"/>
         </LinearLayout>       
     </LinearLayout>

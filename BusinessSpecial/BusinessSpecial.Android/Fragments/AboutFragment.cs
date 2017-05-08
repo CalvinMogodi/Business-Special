@@ -25,8 +25,9 @@ namespace BusinessSpecial.Droid
         public User User { get; set; }
         AlertDialog CategoryDialog;
         List<string> mSelectedItems;
-        TextView displaynameText, businessNameText, registrationnumberText, websitelinkText, wusernameText;
+        TextView displaynameText, category, registrationnumberText, websitelinkText, wusernameText;
         ImageView profilePicture;
+        LinearLayout registrationnumber, websitelink;
 
         string[] items = { "Adventure Or Theme Park", "Art", "Bar, Club Or Pub", "Beauty And Spa", "Cars", "Fashion", "Games", "Health", "Hotel Or Casino", "Investor Or Bank", "Mall Or Shopping Center", "Music And Radio", "Restaurant Or Gas Station", "Software And Technology", "Sport", "Supermarket", "Travel", "Theater", "Wholesale And Hardware" };
         public ProfileViewModel ViewModel { get; set; }
@@ -59,18 +60,21 @@ namespace BusinessSpecial.Droid
                     foreach (var item in _user.Categories)
                     {
                         int position = Array.IndexOf(items, item);
-                        checkedItems[position] = true;
+                        if (position != -1)
+                        {
+                            checkedItems[position] = true;
+                        }
+                        
                     }
                 }
 
                 _user.Id = userId;
                 User = _user;
 
-                displaynameText.Text = String.Format("Display Name : {0}", _user.DisplayName);
-                businessNameText.Text = String.Format("Business Name : {0}", _user.BusinessName);
-                registrationnumberText.Text = String.Format("Registration Number : {0}", _user.RegistrationNumber);
+                displaynameText.Text = String.Format("{0}", _user.DisplayName);
+                registrationnumberText.Text = String.Format("{0}", _user.RegistrationNumber);
                 websitelinkText.Text = String.Format("{0}", _user.WebsiteLink);
-                wusernameText.Text = String.Format("Userame : {0}", _user.Username);
+                wusernameText.Text = String.Format("{0}", _user.Username);
 
                 if (!string.IsNullOrEmpty(_user.Logo))
                 {
@@ -81,16 +85,16 @@ namespace BusinessSpecial.Droid
                 if (_user.UserTypeId == 3)
                 {
                     registrationnumberText.Visibility = ViewStates.Visible;
-                    businessNameText.Visibility = ViewStates.Visible;
                     websitelinkText.Visibility = ViewStates.Visible;
-                    displaynameText.Visibility = ViewStates.Gone;
+                    registrationnumber.Visibility = ViewStates.Visible;
+                    websitelink.Visibility = ViewStates.Visible;
                 }
                 else
                 {
                     registrationnumberText.Visibility = ViewStates.Gone;
-                    businessNameText.Visibility = ViewStates.Gone;
                     websitelinkText.Visibility = ViewStates.Gone;
-                    displaynameText.Visibility = ViewStates.Visible;
+                    registrationnumber.Visibility = ViewStates.Gone;
+                    websitelinkText.Visibility = ViewStates.Gone;
                 }
                 }
 
@@ -125,9 +129,13 @@ namespace BusinessSpecial.Droid
             var view = inflater.Inflate(Resource.Layout.fragment_about, container, false);
             profilePicture = view.FindViewById<ImageView>(Resource.Id.viewaccount_profile_picture);
 
+            
             displaynameText = view.FindViewById<TextView>(Resource.Id.viewaccount_displayname);
             registrationnumberText = view.FindViewById<TextView>(Resource.Id.viewaccount_registrationnumber);
             websitelinkText = view.FindViewById<TextView>(Resource.Id.viewaccount_websitelink);
+            registrationnumber = view.FindViewById<LinearLayout>(Resource.Id.viewaccount_registrationnumberLL);
+            websitelink = view.FindViewById<LinearLayout>(Resource.Id.viewaccount_websitelinkLL);
+            category = view.FindViewById<TextView>(Resource.Id.category_text);
             wusernameText = view.FindViewById<TextView>(Resource.Id.viewaccount_username);
 
 
@@ -137,7 +145,7 @@ namespace BusinessSpecial.Droid
         public override void OnStart()
         {
             base.OnStart();
-            //categoryLinearLayout.Click += Categories_Click;
+            category.Click += Categories_Click;
         }
 
 

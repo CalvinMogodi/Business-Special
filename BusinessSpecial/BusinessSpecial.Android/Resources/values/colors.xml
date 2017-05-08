@@ -13,9 +13,15 @@
   <color name="window_background">#d8d8d8</color>-->
   
   <!--Dark blue -->
-  <color name="primary">#00008b</color>
+  <!--<color name="primary">#00008b</color>
   <color name="primaryDark">#00001b</color>
   <color name="accent">#3232a2</color>
-  <color name="window_background">#cccce7</color>
+  <color name="window_background">#cccce7</color>-->
+
+  <!--Dark blue 191919 -->
+  <color name="primary">#191919</color>
+  <color name="primaryDark">#000000</color>
+  <color name="accent">#999999</color>
+  <color name="window_background">#e5e5e5</color>
   
 </resources>
