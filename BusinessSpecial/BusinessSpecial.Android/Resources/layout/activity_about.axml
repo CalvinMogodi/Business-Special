@@ -16,7 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/toolbar"
-            android:padding="12dp">
+            android:padding="12dp"
+            android:background="@color/material_grey_800">
             <TextView
                 android:id="@+id/textView1"
                 android:text="Vert"
@@ -41,13 +42,12 @@
             <TextView
                 android:text="@string/about_vert"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="314.5dp"
                 android:padding="@dimen/small_margin"
                 android:ellipsize="end"
                 style="?android:textAppearanceMedium"
                 android:id="@+id/textView2"
-                android:gravity="center"
-                android:textColor="@android:color/white" />
+                android:gravity="center" />
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

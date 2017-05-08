@@ -94,7 +94,7 @@ namespace BusinessSpecial.Droid
                     registrationnumberText.Visibility = ViewStates.Gone;
                     websitelinkText.Visibility = ViewStates.Gone;
                     registrationnumber.Visibility = ViewStates.Gone;
-                    websitelinkText.Visibility = ViewStates.Gone;
+                    websitelink.Visibility = ViewStates.Gone;
                 }
                 }
 
