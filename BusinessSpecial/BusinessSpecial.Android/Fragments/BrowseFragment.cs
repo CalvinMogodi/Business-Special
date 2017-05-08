@@ -104,7 +104,7 @@ namespace BusinessSpecial.Droid
 
             Drawable logo = new BitmapDrawable(appPreferences.StringToBitMap(item.User.Logo));
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(Activity, Resource.Style.Base_Widget_AppCompat_Button_Colored);
+            AlertDialog.Builder builder = new AlertDialog.Builder(Activity);
             // Get the layout inflater
             LayoutInflater inflater = Activity.LayoutInflater;
             builder.SetView(inflater.Inflate(Resource.Layout.view_advert, null));
