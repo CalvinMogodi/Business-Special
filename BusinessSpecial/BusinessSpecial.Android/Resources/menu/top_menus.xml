@@ -1,27 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto">
   <item
       android:id="@+id/menu_postAnAD"
-      android:showAsAction="ifRoom"
-      android:title="Post An AD" />
+      android:title="Post An AD"
+      android:showAsAction="always">
+  </item>
   <item
       android:id="@+id/menu_register"
-      android:showAsAction="ifRoom"
-      android:title="Register A Friend" />
+      android:title="Register A Friend"
+      android:showAsAction="always"/>
   <item
     android:id="@+id/menu_contactUs"
-    android:showAsAction="ifRoom"
+    android:showAsAction="always"
     android:title="Contact Us" />
   <item
     android:id="@+id/menu_about"
-    android:showAsAction="ifRoom"
+    android:showAsAction="always"
     android:title="About" />
   <item
       android:id="@+id/menu_login"
-      android:showAsAction="ifRoom"
+      android:showAsAction="always"
       android:title="Log Out" />
   <item
       android:id="@+id/menu_help"
-      android:showAsAction="ifRoom"
+      android:showAsAction="always"
       android:title="Help" />
 </menu>
